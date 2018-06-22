@@ -1,0 +1,18 @@
+MODULES_MANAGER_V2
+Decompress_zlib|C:\Users\155 X-MX\eclipse-workspace\Test\Decompress_zlib.py
+First|C:\Users\155 X-MX\eclipse-workspace\Test\First.py
+blow_test|C:\Users\155 X-MX\eclipse-workspace\Test\blow_test.py
+compile_test|C:\Users\155 X-MX\eclipse-workspace\Test\compile_test.py
+dist.third.VCRUNTIME140|C:\Users\155 X-MX\eclipse-workspace\Test\dist\third\VCRUNTIME140.dll
+dist.third._bz2|C:\Users\155 X-MX\eclipse-workspace\Test\dist\third\_bz2.pyd
+dist.third._hashlib|C:\Users\155 X-MX\eclipse-workspace\Test\dist\third\_hashlib.pyd
+dist.third._lzma|C:\Users\155 X-MX\eclipse-workspace\Test\dist\third\_lzma.pyd
+dist.third._socket|C:\Users\155 X-MX\eclipse-workspace\Test\dist\third\_socket.pyd
+dist.third._ssl|C:\Users\155 X-MX\eclipse-workspace\Test\dist\third\_ssl.pyd
+dist.third.pyexpat|C:\Users\155 X-MX\eclipse-workspace\Test\dist\third\pyexpat.pyd
+dist.third.python36|C:\Users\155 X-MX\eclipse-workspace\Test\dist\third\python36.dll
+dist.third.select|C:\Users\155 X-MX\eclipse-workspace\Test\dist\third\select.pyd
+dist.third.unicodedata|C:\Users\155 X-MX\eclipse-workspace\Test\dist\third\unicodedata.pyd
+hex_count|C:\Users\155 X-MX\eclipse-workspace\Test\hex_count.py
+second|C:\Users\155 X-MX\eclipse-workspace\Test\second.py
+third|C:\Users\155 X-MX\eclipse-workspace\Test\third.py

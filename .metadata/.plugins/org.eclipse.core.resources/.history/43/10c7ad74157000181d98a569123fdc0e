@@ -1,0 +1,30 @@
+from pathlib import Path
+
+def fileLines(path_to_file):
+        
+    
+     
+    if file_to_open.exists():
+        print("Yay, the file exists!")
+        f = open(path_to_file,"r")
+        # Getting all lines    
+        all_lines = f.readlines()
+        f.close()
+        #print('Number of lines: ', str(len(all_lines)))
+        return all_lines
+    
+    print("Oops, file doesn't exist!")
+    return 0
+
+
+
+data_folder = Path("C:/Users/155 X-MX/Desktop/Preenche Servicos")
+print (type(data_folder))
+file_to_open = data_folder / "dados.txt"
+print(type(file_to_open))
+data_folder1 = Path("C:/Users/155 X-MX/Desktop/Preenche Servicos/dados.txt")
+print (type(data_folder1))
+if data_folder == data_folder1:
+    print('sao igusis')
+    
+fileLines(data_folder)

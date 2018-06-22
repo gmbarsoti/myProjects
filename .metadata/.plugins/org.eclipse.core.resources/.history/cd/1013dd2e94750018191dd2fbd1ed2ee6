@@ -1,0 +1,23 @@
+'''
+Created on 20 de jun de 2018
+
+@author: 155 X-MX
+'''
+
+mdk = [3,1,2,0,0,1]
+
+s = b'a'
+print s
+#===============================================================================
+# l_bytes = []
+# for i in mdk:
+#     b = i.to_bytes(1, byteorder='big', signed=True)
+#     l_bytes.append(b)
+#     print (b)
+#     
+#===============================================================================
+
+hex_str = input("hex_list: ")
+
+hex_str_list = hex_str.split(",")
+print(len(hex_str_list))

@@ -1,0 +1,19 @@
+'''
+Created on 21 de jun de 2018
+
+@author: 155 X-MX
+'''
+from pathlib import Path
+import zlib
+
+path_to_directory = "C:/Users/155 X-MX/Desktop"
+file_name = "Init_DTC.ctec"
+
+data_folder = Path(path_to_directory)
+file_to_open = data_folder / file_name
+     
+
+
+compressed_data = open(file_to_open,"rb").read()  
+decompressed_data = zlib.decompress(compressed_data)  
+print(decompressed_data)  

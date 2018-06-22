@@ -1,0 +1,28 @@
+from pathlib import Path
+
+def fileLines(directory_path,file_name):
+    # Return lines of a txt file in a list
+    
+    data_folder = Path(directory_path) # format ex: "C:/Users/155 X-MX/Desktop/Preenche Servicos"
+    path_to_file = data_folder / file_name # Ex: 'file_name.txt'
+    # Checking if file exists     
+    if path_to_file.exists():
+        print("Yay, the file exists!")
+        f = open(path_to_file,"r")
+        # Getting all lines    
+        all_lines = f.readlines()
+        f.close()
+        print('Number of lines: ', str(len(all_lines)))
+        return all_lines
+    
+    print("Oops, file doesn't exist!")
+    return 0
+
+
+directory_path = 'C:/Users/155 X-MX/Desktop/sand_box'
+file_name = 'req_res.txt'
+
+all_lines = fileLines(directory_path, file_name)
+
+for line in all_lines:
+    print(line[2])

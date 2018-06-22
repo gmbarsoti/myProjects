@@ -1,0 +1,86 @@
+-- VERSION_5
+-- START DISKCACHE_2
+C:\Users\155 X-MX\eclipse-workspace\.metadata\.plugins\org.eclipse.core.resources\.projects\Test\com.python.pydev.analysis\v2_indexcache
+third|1529094186054620000|C:\Users\155 X-MX\eclipse-workspace\Test\third.py
+compile_test|1529063911135424000|C:\Users\155 X-MX\eclipse-workspace\Test\compile_test.py
+hex_count|1529669035973846000|C:\Users\155 X-MX\eclipse-workspace\Test\hex_count.py
+blow_test|1529612809935984000|C:\Users\155 X-MX\eclipse-workspace\Test\blow_test.py
+First|1528810751651433000|C:\Users\155 X-MX\eclipse-workspace\Test\First.py
+Decompress_zlib|1529673292148160000|C:\Users\155 X-MX\eclipse-workspace\Test\Decompress_zlib.py
+second|1529687939190288000|C:\Users\155 X-MX\eclipse-workspace\Test\second.py
+-- END DISKCACHE
+-- START DICTIONARY
+14
+1=C:\Users\155 X-MX\eclipse-workspace\Test\second.py
+6=Decompress_zlib
+9=C:\Users\155 X-MX\eclipse-workspace\Test\blow_test.py
+2=second
+13=capture_header
+11=C:\Users\155 X-MX\eclipse-workspace\Test\First.py
+14=capture_header.__init__
+4=third
+5=C:\Users\155 X-MX\eclipse-workspace\Test\Decompress_zlib.py
+8=hex_count
+3=C:\Users\155 X-MX\eclipse-workspace\Test\third.py
+10=blow_test
+7=C:\Users\155 X-MX\eclipse-workspace\Test\hex_count.py
+12=First
+-- END DICTIONARY
+-- START TREE 1
+45
+a|0|
+adj|1|adjust_list!1^107#5*18@
+all|1|all_lines!3^26#1*35@
+b|2|b!5^43#5*51@b!7^12#5*67@
+bs|2|bs!9^9#1*83@bs!5^63#1*51@
+cap|1|capture_header!11^11#7*97@
+cip|4|cipher!5^70#1*51@ciphertext!5^66#1*51@cipher!9^15#1*83@ciphertext!9^11#1*83@
+cle|2|clean_all_lines!1^136#5*18@cleaned_line!1^162#1*19@
+com|1|compressed_data!5^19#1*51@
+cry|0|
+csv|1|csv_file!3^39#1*35@
+dat|3|data_folder!3^36#1*35@data_folder!1^204#1*19@data_folder!5^14#1*51@
+dec|1|decompressed_data!5^20#1*51@
+dir|1|directory_path!3^23#1*35@
+f|2|f!5^28#1*51@f!1^209#5*19@
+fil|8|file_to_open!5^15#1*51@fileLines!1^10#5*18@fileLines!3^4#5*34@file_name!3^24#1*35@fileLines!11^40#5*98@file_name!1^153#1*19@file_to_open!1^205#1*19@file_name!5^12#1*51@
+fin|1|final_list!1^170#1*19@
+fir|2|first_part!5^34#1*51@first_part!7^6#1*67@
+ful|2|full_key!5^48#1*51@full_key!7^17#1*67@
+hex|2|hex_str!7^20#1*67@hex_str_list!7^22#1*67@
+inp|0|
+iv|2|iv!9^12#1*83@iv!5^67#1*51@
+key|2|key!5^64#1*51@key!9^10#1*83@
+l|0|
+l_b|2|l_bytes!5^40#1*51@l_bytes!7^9#1*67@
+las|2|last_byte!5^72#1*51@last_byte!9^18#1*83@
+lin|4|line_to_csv!3^52#5*35@line_adjust!1^90#5*18@line_list!3^45#5*35@lines!1^156#1*19@
+mai|1|main!11^58#5*98@
+mdk|2|mdkey!5^39#1*51@mdkey!7^8#1*67@
+mod|0|
+msg|2|msg!5^71#1*51@msg!9^16#1*83@
+occ|2|occurred_cases!1^28#5*18@occurred_cases2!1^39#5*18@
+onl|2|only_requests!1^179#1*19@only_responses!1^181#1*19@
+pad|0|
+pat|3|path_to_file!3^37#1*35@path_to_directory!5^10#1*51@path_to_directory!1^152#1*19@
+pla|0|
+pos|1|positions!1^163#1*19@
+req|4|req_and_res!1^55#5*18@requests_already_got!1^206#1*19@request!3^48#5*35@req_vector!1^193#1*19@
+res|1|response!3^49#5*35@
+s|0|
+sec|2|second_part!5^35#1*51@second_part!7^7#1*67@
+str|1|str_line!1^228#9*19@
+tes|2|test!5^41#1*51@test!7^10#1*67@
+var|0|
+vec|1|vec_req_and_res!1^187#1*19@
+-- END TREE
+-- START TREE 2
+7
+__i|1|__init__!13&11^18#9*98@
+cap|2|captor!13&11^12#5*99@captor!14&11^23#17*99@
+dat|2|date!13&11^15#5*99@date!14&11^29#17*99@
+os|2|os!13&11^14#5*99@os!14&11^27#17*99@
+pri|1|printInfo!13&11^33#9*98@
+tim|2|time!13&11^16#5*99@time!14&11^31#17*99@
+use|2|user!13&11^13#5*99@user!14&11^25#17*99@
+-- END TREE

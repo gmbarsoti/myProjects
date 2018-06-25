@@ -1,0 +1,23 @@
+'''
+Created on 22 de jun de 2018
+
+@author: 155 X-MX
+'''
+from subprocess import run, PIPE
+from pathlib import Path
+
+data_folder = Path("C:/Users/155 X-MX/Desktop/")
+program_path = data_folder / "ProtocolAnalyzerSaveXml.exe"
+
+cap_path = data_folder / "InitGscan.ctec"
+
+a = run([program_path,cap_path], stdout=PIPE)
+print(type(a.stdout))
+#print (b.encode("utf-8"))
+f = str(a.stdout).split("\\r\\n")
+
+for i in f:
+    print(i)
+
+u = u"não é"
+print(u)

@@ -1,9 +1,0 @@
-'''
-Created on 15 de jun de 2018
-
-@author: 155 X-MX
-'''
-import py_compile
-print('Hello')
-py_compile.compile("compile_test.py")
-input('enter to continue...')

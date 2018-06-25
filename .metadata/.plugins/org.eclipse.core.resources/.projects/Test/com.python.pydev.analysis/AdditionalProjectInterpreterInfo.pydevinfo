@@ -2,85 +2,95 @@
 -- START DISKCACHE_2
 C:\Users\155 X-MX\eclipse-workspace\.metadata\.plugins\org.eclipse.core.resources\.projects\Test\com.python.pydev.analysis\v2_indexcache
 third|1529094186054620000|C:\Users\155 X-MX\eclipse-workspace\Test\third.py
+recorded_services_diff|1529932285823607000|C:\Users\155 X-MX\eclipse-workspace\Test\recorded_services_diff.py
+test|1529965370321584000|C:\Users\155 X-MX\eclipse-workspace\Test\test.py
 compile_test|1529063911135424000|C:\Users\155 X-MX\eclipse-workspace\Test\compile_test.py
 hex_count|1529669035973846000|C:\Users\155 X-MX\eclipse-workspace\Test\hex_count.py
 blow_test|1529612809935984000|C:\Users\155 X-MX\eclipse-workspace\Test\blow_test.py
 First|1528810751651433000|C:\Users\155 X-MX\eclipse-workspace\Test\First.py
+cap_xml|1529931854409315000|C:\Users\155 X-MX\eclipse-workspace\Test\cap_xml.py
 Decompress_zlib|1529673292148160000|C:\Users\155 X-MX\eclipse-workspace\Test\Decompress_zlib.py
-second|1529687939190288000|C:\Users\155 X-MX\eclipse-workspace\Test\second.py
+second|1529701471085527000|C:\Users\155 X-MX\eclipse-workspace\Test\second.py
 -- END DISKCACHE
 -- START DICTIONARY
-14
-1=C:\Users\155 X-MX\eclipse-workspace\Test\second.py
-6=Decompress_zlib
-9=C:\Users\155 X-MX\eclipse-workspace\Test\blow_test.py
-2=second
-13=capture_header
-11=C:\Users\155 X-MX\eclipse-workspace\Test\First.py
-14=capture_header.__init__
-4=third
-5=C:\Users\155 X-MX\eclipse-workspace\Test\Decompress_zlib.py
-8=hex_count
-3=C:\Users\155 X-MX\eclipse-workspace\Test\third.py
-10=blow_test
-7=C:\Users\155 X-MX\eclipse-workspace\Test\hex_count.py
-12=First
+18
+3=C:\Users\155 X-MX\eclipse-workspace\Test\second.py
+2=test
+15=C:\Users\155 X-MX\eclipse-workspace\Test\recorded_services_diff.py
+8=Decompress_zlib
+11=C:\Users\155 X-MX\eclipse-workspace\Test\blow_test.py
+4=second
+17=capture_header
+1=C:\Users\155 X-MX\eclipse-workspace\Test\test.py
+13=C:\Users\155 X-MX\eclipse-workspace\Test\First.py
+18=capture_header.__init__
+6=third
+16=recorded_services_diff
+7=C:\Users\155 X-MX\eclipse-workspace\Test\Decompress_zlib.py
+10=hex_count
+5=C:\Users\155 X-MX\eclipse-workspace\Test\third.py
+12=blow_test
+9=C:\Users\155 X-MX\eclipse-workspace\Test\hex_count.py
+14=First
 -- END DICTIONARY
 -- START TREE 1
-45
-a|0|
-adj|1|adjust_list!1^107#5*18@
-all|1|all_lines!3^26#1*35@
-b|2|b!5^43#5*51@b!7^12#5*67@
-bs|2|bs!9^9#1*83@bs!5^63#1*51@
-cap|1|capture_header!11^11#7*97@
-cip|4|cipher!5^70#1*51@ciphertext!5^66#1*51@cipher!9^15#1*83@ciphertext!9^11#1*83@
-cle|2|clean_all_lines!1^136#5*18@cleaned_line!1^162#1*19@
-com|1|compressed_data!5^19#1*51@
+48
+a|1|a!1^8#1*19@
+adj|1|adjust_list!3^113#5*34@
+all|1|all_lines!5^26#1*51@
+b|2|b!7^43#5*67@b!9^12#5*83@
+bs|2|bs!11^9#1*99@bs!7^63#1*67@
+cap|1|capture_header!13^11#7*113@
+cip|4|cipher!7^70#1*67@ciphertext!7^66#1*67@cipher!11^15#1*99@ciphertext!11^11#1*99@
+cle|1|clean_all_lines!3^142#5*34@
+com|1|compressed_data!7^19#1*67@
 cry|0|
-csv|1|csv_file!3^39#1*35@
-dat|3|data_folder!3^36#1*35@data_folder!1^204#1*19@data_folder!5^14#1*51@
-dec|1|decompressed_data!5^20#1*51@
-dir|1|directory_path!3^23#1*35@
-f|2|f!5^28#1*51@f!1^209#5*19@
-fil|8|file_to_open!5^15#1*51@fileLines!1^10#5*18@fileLines!3^4#5*34@file_name!3^24#1*35@fileLines!11^40#5*98@file_name!1^153#1*19@file_to_open!1^205#1*19@file_name!5^12#1*51@
-fin|1|final_list!1^170#1*19@
-fir|2|first_part!5^34#1*51@first_part!7^6#1*67@
-ful|2|full_key!5^48#1*51@full_key!7^17#1*67@
-hex|2|hex_str!7^20#1*67@hex_str_list!7^22#1*67@
+csv|1|csv_file!5^39#1*51@
+dat|3|data_folder!5^36#1*51@data_folder!15^12#1*131@data_folder!7^14#1*67@
+dec|1|decompressed_data!7^20#1*67@
+dir|1|directory_path!5^23#1*51@
+f|3|f!7^28#1*67@f!15^17#5*131@f!1^11#1*19@
+f_d|1|f_diff!15^38#1*131@
+f_e|1|f_equal!15^34#1*131@
+fil|7|file_to_open!7^15#1*67@fileLines!3^10#5*34@fileLines!5^4#5*50@file_name!5^24#1*51@fileLines!13^40#5*114@file_to_open!15^13#1*131@file_name!7^12#1*67@
+fin|0|
+fir|2|first_part!7^34#1*67@first_part!9^6#1*83@
+ful|2|full_key!9^17#1*83@full_key!7^48#1*67@
+hex|2|hex_str!9^20#1*83@hex_str_list!9^22#1*83@
 inp|0|
-iv|2|iv!9^12#1*83@iv!5^67#1*51@
-key|2|key!5^64#1*51@key!9^10#1*83@
+iv|2|iv!11^12#1*99@iv!7^67#1*67@
+key|2|key!7^64#1*67@key!11^10#1*99@
 l|0|
-l_b|2|l_bytes!5^40#1*51@l_bytes!7^9#1*67@
-las|2|last_byte!5^72#1*51@last_byte!9^18#1*83@
-lin|4|line_to_csv!3^52#5*35@line_adjust!1^90#5*18@line_list!3^45#5*35@lines!1^156#1*19@
-mai|1|main!11^58#5*98@
-mdk|2|mdkey!5^39#1*51@mdkey!7^8#1*67@
+l_b|2|l_bytes!7^40#1*67@l_bytes!9^9#1*83@
+las|2|last_byte!7^72#1*67@last_byte!11^18#1*99@
+lin|5|line_to_csv!5^52#5*51@line_adjust!3^90#5*34@lines_second!15^24#1*131@line_list!5^45#5*51@lines_first!15^14#1*131@
+mai|2|main!3^157#5*34@main!13^58#5*114@
+mdk|2|mdkey!7^39#1*67@mdkey!9^8#1*83@
 mod|0|
-msg|2|msg!5^71#1*51@msg!9^16#1*83@
-occ|2|occurred_cases!1^28#5*18@occurred_cases2!1^39#5*18@
-onl|2|only_requests!1^179#1*19@only_responses!1^181#1*19@
+msg|2|msg!7^71#1*67@msg!11^16#1*99@
+occ|2|occurred_cases!3^28#5*34@occurred_cases2!3^39#5*34@
+onl|0|
 pad|0|
-pat|3|path_to_file!3^37#1*35@path_to_directory!5^10#1*51@path_to_directory!1^152#1*19@
+pat|2|path_to_file!5^37#1*51@path_to_directory!7^10#1*67@
 pla|0|
-pos|1|positions!1^163#1*19@
-req|4|req_and_res!1^55#5*18@requests_already_got!1^206#1*19@request!3^48#5*35@req_vector!1^193#1*19@
-res|1|response!3^49#5*35@
+pos|0|
+req|2|req_and_res!3^55#5*34@request!5^48#5*51@
+res|1|response!5^49#5*51@
 s|0|
-sec|2|second_part!5^35#1*51@second_part!7^7#1*67@
-str|1|str_line!1^228#9*19@
-tes|2|test!5^41#1*51@test!7^10#1*67@
+sec|2|second_part!7^35#1*67@second_part!9^7#1*83@
+str|0|
+tes|2|test!7^41#1*67@test!9^10#1*83@
+u|1|u!1^16#1*19@
 var|0|
-vec|1|vec_req_and_res!1^187#1*19@
+vec|0|
 -- END TREE
 -- START TREE 2
 7
-__i|1|__init__!13&11^18#9*98@
-cap|2|captor!13&11^12#5*99@captor!14&11^23#17*99@
-dat|2|date!13&11^15#5*99@date!14&11^29#17*99@
-os|2|os!13&11^14#5*99@os!14&11^27#17*99@
-pri|1|printInfo!13&11^33#9*98@
-tim|2|time!13&11^16#5*99@time!14&11^31#17*99@
-use|2|user!13&11^13#5*99@user!14&11^25#17*99@
+__i|1|__init__!17&13^18#9*114@
+cap|2|captor!17&13^12#5*115@captor!18&13^23#17*115@
+dat|2|date!17&13^15#5*115@date!18&13^29#17*115@
+os|2|os!17&13^14#5*115@os!18&13^27#17*115@
+pri|1|printInfo!17&13^33#9*114@
+tim|2|time!17&13^16#5*115@time!18&13^31#17*115@
+use|2|user!17&13^13#5*115@user!18&13^25#17*115@
 -- END TREE

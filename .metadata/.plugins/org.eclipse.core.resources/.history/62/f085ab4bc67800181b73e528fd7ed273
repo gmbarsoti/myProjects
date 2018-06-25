@@ -1,0 +1,16 @@
+'''
+Created on 22 de jun de 2018
+
+@author: 155 X-MX
+'''
+from subprocess import run, PIPE
+
+a = run(["dir"], shell=True, stdout=PIPE)
+print(type(a.stdout))
+#print (b.encode("utf-8"))
+f = str(a.stdout).split("\\r\\n")
+
+for i in f:
+    print(i)
+
+print("não é ")

@@ -1,4 +1,5 @@
 MODULES_MANAGER_V2
+CSV_third|C:\Users\155 X-MX\eclipse-workspace\Test\CSV_third.py
 Decompress_zlib|C:\Users\155 X-MX\eclipse-workspace\Test\Decompress_zlib.py
 First|C:\Users\155 X-MX\eclipse-workspace\Test\First.py
 blow_test|C:\Users\155 X-MX\eclipse-workspace\Test\blow_test.py
@@ -18,4 +19,3 @@ hex_count|C:\Users\155 X-MX\eclipse-workspace\Test\hex_count.py
 recorded_services_diff|C:\Users\155 X-MX\eclipse-workspace\Test\recorded_services_diff.py
 second|C:\Users\155 X-MX\eclipse-workspace\Test\second.py
 test|C:\Users\155 X-MX\eclipse-workspace\Test\test.py
-third|C:\Users\155 X-MX\eclipse-workspace\Test\third.py

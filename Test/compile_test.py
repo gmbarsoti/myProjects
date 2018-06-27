@@ -5,5 +5,5 @@ Created on 15 de jun de 2018
 '''
 import py_compile
 print('Hello')
-py_compile.compile("third.py")
+py_compile.compile("CSV_third.py")
 input('enter to continue...')

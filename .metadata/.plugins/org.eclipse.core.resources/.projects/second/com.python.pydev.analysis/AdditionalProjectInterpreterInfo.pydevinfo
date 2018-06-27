@@ -1,0 +1,23 @@
+-- VERSION_5
+-- START DISKCACHE_2
+C:\Users\155 X-MX\eclipse-workspace\.metadata\.plugins\org.eclipse.core.resources\.projects\second\com.python.pydev.analysis\v2_indexcache
+second_mec|1530022056353208000|D:\Second\second_mec.py
+-- END DISKCACHE
+-- START DICTIONARY
+2
+1=D:\Second\second_mec.py
+2=second_mec
+-- END DICTIONARY
+-- START TREE 1
+7
+adj|1|adjust_list!1^113#5*18@
+cle|1|clean_all_lines!1^142#5*18@
+fil|1|fileLines!1^10#5*18@
+lin|1|line_adjust!1^90#5*18@
+mai|1|main!1^157#5*18@
+occ|2|occurred_cases!1^28#5*18@occurred_cases2!1^39#5*18@
+req|1|req_and_res!1^55#5*18@
+-- END TREE
+-- START TREE 2
+0
+-- END TREE

@@ -126,7 +126,7 @@ def adjust_list(list_to_adjust):
     ''' Check if first line is a service or a response. If it is a response pop it.'''
         
     new_first_line = line_adjust(list_to_adjust[0])
-    response_values = ['4','5','6','7'] # values with third bit enable Ex: 0101
+    response_values = ['4','5','6','7'] # values with CSV_third bit enable Ex: 0101
     if new_first_line[2][0] in response_values: # Check if the first position in first line is a request
         list_to_adjust.pop(0) # if not pop the first line
     

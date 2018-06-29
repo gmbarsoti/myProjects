@@ -7,6 +7,7 @@ from subprocess import run, PIPE
 from pathlib import Path
 import xml.etree.ElementTree as ET
 import os
+from concurrent.futures.process import _add_call_item_to_queue
 
 
 class captured_config:
@@ -60,9 +61,9 @@ def generate_xml(cap_file):
 
 
 
-def xml_treatment():
-    data_folder = Path("D:/sand_box/")
-    program_path = data_folder /  "Leitutas.xml"
+def xml_treatment(xml_file_name):
+    data_folder = Path("D:/sand_box/cap_files/xml_files/")
+    program_path = data_folder /  xml_file_name
     
     tree = ET.parse(program_path)
     root = tree.getroot()
@@ -115,8 +116,29 @@ def cap_files():
         print("Creating directory cap_files...")
         os.makedirs("D:/sand_box/cap_files")
    
-    all_cap_path = os.listdir("D:/sand_box/cap_files")
+    all_itens_on_directory = os.listdir("D:/sand_box/cap_files")
+    all_cap_path = []
+    
+    for item in all_itens_on_directory:
+        path_to_check = "D:/sand_box/cap_files/" + item
+        if os.path.isfile(path_to_check):
+            all_cap_path.append(item)
+    
+    
     return all_cap_path
+
+
+def xml_files():
+    ''' Return a list with all path to xml files from a specific directory'''
+    if not os.path.isdir("D:/sand_box/cap_files/xml_files"):
+        print("Missing cap_file directory...")
+        print("Missing xml files...")
+        print("Creating directory xml_files...")
+        os.makedirs("D:/sand_box/cap_files/xml_files")
+   
+    all_cap_path = os.listdir("D:/sand_box/cap_files/xml_files")
+    return all_cap_path
+
 
 def move_xml_files():
     dir_files = os.listdir("D:/sand_box/cap_files")
@@ -127,48 +149,47 @@ def move_xml_files():
 
 def main():
     
-    #cap_file = "Leitutas.ctec"
-    
-    all_cap_file = cap_files()
-    
-    for cap_file in all_cap_file:
+     
+    all_cap_files = cap_files()
+    # Generating all XML files from cap files
+    for cap_file in all_cap_files:
         print(cap_file)
         generate_xml(cap_file)
-    
+     
+    # Moving files to xml directory
     move_xml_files()
-    input()
-    cap_file = "Leitutas.ctec"    
-    generate_xml(cap_file)
+     
+    # Create a .txt file from each xml file
     
-    xml_dict, com_list = xml_treatment()
-    a_class = captured_config(xml_dict, com_list)
-    a_class.printInfo()
+    all_xml_files =  xml_files()
+    
+    cap_object_list = []
+    
+    for xml_file in all_xml_files:
+        xml_dict, com_list = xml_treatment(xml_file)
+        cap_object_list.append(captured_config(xml_dict, com_list))
     
     # Putting communication in a file
     if not os.path.isdir("D:/sand_box/output"):
         print("Creating directory output...")
         os.makedirs("D:/sand_box/output")
+
+    txt_file_list = []
     
+    for cap_file in all_cap_files:
+        txt_file_list.append(open("D:/sand_box/cap_files/txt_files/" + cap_file[:-4] + 'txt',"w"))
     
+    for i, txt_file in enumerate(txt_file_list):
+        communication = cap_object_list[i].get_communication()
+        # Putting all lines into txt file
+        for com in communication:
+            line_to_write = (com["Format"] + " "  + com["Id"] + "."  + 
+                         str(com["Data"]).replace(',','.') + "\n") 
+            txt_file.write(line_to_write)
+        txt_file.close()  
     
-    for cap_file in all_cap_file:
-        f = open("D:/sand_box/output/" + cap_file,"a")
         
-    f = open("D:/sand_box/output/cap.txt","a")
-    communication = a_class.get_communication()
+    input()
     
-    
-    
-    # Putting all lines to the main file
-    for com in communication:
-        line_to_write = (com["Format"] + " "  + com["Id"] + "."  + 
-                     str(com["Data"]).replace(',','.') + "\n") 
-        f.write(line_to_write)
-    f.close()
-    #===========================================================================
-    # line_to_write = (l[0]["Time"] + " " + l[0]["Count"] + " "  + 
-    #                  l[0]["Format"] + " "  + l[0]["Id"] + " "  + 
-    #                  str(l[0]["Data"]).replace(',','.') + "\n") 
-    #===========================================================================
 if __name__ == "__main__":
     main()

@@ -7,7 +7,7 @@ from subprocess import run, PIPE
 from pathlib import Path
 import xml.etree.ElementTree as ET
 import os
-from concurrent.futures.process import _add_call_item_to_queue
+
 
 
 class captured_config:
@@ -146,6 +146,48 @@ def move_xml_files():
     for item in dir_files:
         if item[-3:] == "xml":
             os.rename("D:/sand_box/cap_files/" + item, "D:/sand_box/cap_files/xml_files/" + item)
+            
+            
+def choose_filter():
+    """ Choose a specific filter to get a specific communication from cap files """
+    choice = ''
+    valid_list = ['1','2','3','4','5','6']
+    while not choice in valid_list:
+        choice = input("Choose a filter to use:\n" +
+                       "1 - body - 745, 765\n" +
+                       "2 - engine - 7E0, 7E8\n" +
+                       "3 - cluster - 743, 763\n" +
+                       "4- steering - 742, 762\n" +
+                       "5 - ABS - 740, 760\n" +
+                       "6 - airbag - 752, 772\n")
+        if not choice in valid_list:
+            print("\nChoose a valid option!\n")
+    
+    
+    # Creating a filter to get specific communications
+    body = ["745","765"] # Carroceira in Portuguese
+    engine = ["7E0","7E8"] # Motor in Portuguese
+    cluster = ["743","763"] # Painel in Portuguese
+    steering = ["742","762"] # Direcao in Portuguese
+    ABS = ["740","760"] 
+    airbag = ["752","772"]
+    
+    communication_filter = []
+    
+    if choice == '1':
+        communication_filter = body
+    elif choice == '2':
+        communication_filter = engine
+    elif choice == '3':
+        communication_filter = cluster
+    elif choice == '4':
+        communication_filter = steering
+    elif choice == '5':
+        communication_filter = ABS
+    elif choice == '6':
+        communication_filter = airbag
+        
+    return communication_filter
 
 def main():
     
@@ -179,17 +221,22 @@ def main():
     for cap_file in all_cap_files:
         txt_file_list.append(open("D:/sand_box/cap_files/txt_files/" + cap_file[:-4] + 'txt',"w"))
     
+    
+    communication_filter = choose_filter()
+        
     for i, txt_file in enumerate(txt_file_list):
         communication = cap_object_list[i].get_communication()
         # Putting all lines into txt file
         for com in communication:
-            line_to_write = (com["Format"] + " "  + com["Id"] + "."  + 
-                         str(com["Data"]).replace(',','.') + "\n") 
-            txt_file.write(line_to_write)
+            if com["Id"] in communication_filter: 
+                line_to_write = (com["Format"] + " "  + com["Id"] + "."  + 
+                                 str(com["Data"]).replace(',','.') + "\n")
+                
+                txt_file.write(line_to_write)
         txt_file.close()  
     
         
-    input()
+    input("PRESS ENTER TO FINISH!!!")
     
 if __name__ == "__main__":
     main()

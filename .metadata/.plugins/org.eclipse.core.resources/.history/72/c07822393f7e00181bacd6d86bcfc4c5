@@ -1,0 +1,45 @@
+'''
+Created on 22 de jun de 2018
+
+@author: 155 X-MX
+'''
+choice = ''
+valid_list = ['1','2','3','4','5','6']
+while not choice in valid_list:
+    choice = input("Choose a filter to use:\n" +
+                   "1 - body - 745, 765\n" +
+                   "2 - engine - 7E0, 7E8\n" +
+                   "3 - cluster - 743, 763\n" +
+                   "4- steering - 742, 762\n" +
+                   "5 - ABS - 740, 760\n" +
+                   "6 - airbag - 752, 772\n")
+    if not choice in valid_list:
+        print("\nChoose a valid option!\n")
+
+
+# Creating a filter to get specific communications
+body = ["745","765"] # Carroceira in Portuguese
+engine = ["7E0","7E8"] # Motor in Portuguese
+cluster = ["743","763"] # Painel in Portuguese
+steering = ["742","762"] # Direção in Portuguese
+ABS = ["740","760"] 
+airbag = ["752","772"]
+
+filter = []
+
+if choice == '1':
+    filter = body
+elif choice == '2':
+    filter = engine
+elif choice == '3':
+    filter = cluster
+elif choice == '4':
+    filter = steering
+elif choice == '5':
+    filter = ABS
+elif choice == '6':
+    filter = airbag
+    
+    
+print (filter)
+    

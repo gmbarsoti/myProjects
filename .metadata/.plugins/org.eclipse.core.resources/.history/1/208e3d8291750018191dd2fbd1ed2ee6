@@ -1,9 +1,0 @@
-'''
-Created on 20 de jun de 2018
-
-@author: 155 X-MX
-'''
-hex_str = input("hex_list: ")
-
-hex_str_list = hex_str.split(",")
-print(len(hex_str_list))

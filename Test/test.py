@@ -1,23 +1,57 @@
-def line_adjust(line):
-    ''' Return a list without specific separators'''
-    # Getting symbol of empty that is in the lines
-    items = line.split(' ')
+import shutil
+from pathlib import Path
+from os.path import isfile
+from os import remove, rename, chdir, getcwd
+from subprocess import  run, PIPE
+
+def frames_can(file_name):
+    ''' *** '''
+    # remove file captura.txt
+    dest_path = Path("D:/sand_box/FramesCAN")
+    cap_file = dest_path / "captura.txt"
+    if isfile(cap_file):
+        print("Removing file: captura.txt")
+        remove(cap_file)
     
-    separator = items[1]
-    new_list = []
-    if len(separator) >1:
-        # There is no separator
-        return items
-        pass
-    else:
-        # There is a separator
-        # creating new line list without separator
-        for item in items:
-            if item != separator:
-                new_list.append(item)
-            
-        # removing \n from the last list item
-        new_list[2] = new_list[2][:-1]
-        return new_list
-print(line_adjust("740.   2. 3E.01."))
-print(line_adjust("Sd 745.02.10.C0.00.00.00.00.00."))
+    # Coping file to framesCAN directory
+    source_path = Path("D:/sand_box/cap_files/txt_files")
+    
+    file_path = source_path / file_name
+    
+    dest_path = Path("D:/sand_box/FramesCAN")
+    shutil.copy(file_path, dest_path)
+    print(".txt file copied!")
+    
+    # Renaming .txt file to captura.txt
+    old_name = dest_path / file_name
+    new_name = dest_path / "captura.txt"
+    
+    rename(old_name, new_name)
+    print(".txt file renamed!")
+    
+    
+    # Changing directory to execute FramesCAN.exe
+    
+    main_dir = getcwd()
+    
+    chdir("D:/sand_box/FramesCAN")
+    
+    # Executing FramesCan.exe
+    
+    program_dir_path = Path("D:/sand_box/FramesCAN")
+    program_path = program_dir_path / "FramesCAN.exe"
+    
+    FramesCAN_return = run([str(program_path)], shell=True, stdout=PIPE)
+    print("FramesCAN ran!")
+    print("\n\nFramesCAN output:\n\n", FramesCAN_return.stdout)
+    
+    # Changing directory to root
+    
+    chdir(main_dir)
+    
+    
+file_name = "ApagaMemoria.txt"  
+frames_can(file_name)
+
+
+

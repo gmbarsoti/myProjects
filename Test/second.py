@@ -53,31 +53,19 @@ def occurred_cases2(full_vector):
 
 
 def req_and_res(full_vector):
+    """Return a list with a request and a response per item in list"""
     
     ret_vector = []
     aux = []
+    
     # getting just even positions Ex: 0,2,4,...
     only_requests = full_vector[::2]
+    
     # getting just odd positions Ex: 1,3,5,...
     only_responses = full_vector[1::2]
     
-    #===========================================================================
-    # ''' List fix: Remove last line if there is more requests
-    # than responses'''
-    # 
-    # if not len(only_requests) == len(only_responses):
-    #     print('Full vec size: ' + str(len(full_vector)))
-    #     print('requests vec size: ' + str(len(only_requests))+ '  '+ 'responses vec size: ' + str(len(only_responses))) 
-    #     print("different lists sizes")
-    #     print("removeing last position from requests vector (cap file)")
-    #     only_requests.pop()
-    #===========================================================================
-        
-    
-    # creating a list with request and its corresponding response per list item
+    # creating a list with requests and its corresponding responses per item in list
     for position, request_element in enumerate(only_requests):
-        #print (request_element)
-        #print (only_responses[position])
         aux.append(request_element)
         aux.append(only_responses[position])
         ret_vector.append(list(aux))
@@ -88,7 +76,7 @@ def req_and_res(full_vector):
     return ret_vector
 
 def line_adjust(line):
-    ''' Return a list without not useful separators'''
+    ''' Return a list without unnecessary separators'''
     # Getting symbol of empty that is in the lines
     items = line.split(' ')
     
@@ -96,6 +84,8 @@ def line_adjust(line):
     new_list = []
     if len(separator) >1:
         # There is no separator
+        # removing \n from the last list item
+        items[2] =  items[2][:-1]
         return items
         pass
     else:
@@ -154,6 +144,100 @@ def clean_all_lines(lines_list):
 
 ##########
 
+def get_new_services():
+    
+    # Path to data.txt directory
+    path_to_directory_framesCAN = "D:/sand_box/FramesCAN"
+    data_txt_file = "dados.txt"
+    
+    # Getting all lines from file dados.txt
+    lines = fileLines(path_to_directory_framesCAN, data_txt_file)
+    
+    # Leaving lines list in a treatable format
+    lines = adjust_list(lines)
+    
+    # Removing separators in each line
+    final_list = clean_all_lines(lines)
+    
+    print("Lines to be analysed:")
+    for b,i in enumerate(final_list):
+        print (i,b)
+    
+    # Organizing requests and responses in a list
+    list_req_and_res = req_and_res(final_list)
+    
+    # Check if there was communication
+    if list_req_and_res == 0:
+        
+        pass
+        print('No communicaiton found in dados.txt file \nfinishing app....')
+        
+    else:
+        
+        # Get just one occurence of each service in communicaton from dados.txt file
+        list_req_and_res = occurred_cases2(list_req_and_res)
+        req_vector = []
+        
+        # Getting just requests
+        for request in list_req_and_res:
+            req_vector.append(request[0][2])
+        
+        print("\nRequests occured:\n")
+        for i in req_vector:
+            print (i)    
+        
+        # Getting requests that already occurred
+        data_folder = Path("D:/sand_box/output")
+        file_to_open = data_folder / "occurred_requests.txt"
+        requests_already_got = []
+        
+        #checking if the file already exists
+        if os.path.isfile(file_to_open): 
+            
+            # if occurred_requests.txt file exists let's read services already registered
+            f = open(file_to_open,"r")
+            
+            # Getting all lines    
+            requests_already_got = f.readlines()
+            
+            f.close() 
+        
+        # recording cases in a file
+        data_folder = Path("D:/sand_box/output")
+        file_to_open = data_folder / "occurred_requests.txt"
+        f = open(file_to_open,"a")
+         
+        for request in req_vector:
+            # checking if the request already occurred
+            # if not, insert this request at file occurred requests.txt
+            if not request +'\n' in requests_already_got:
+                # wrinting line to the file
+                str_line = request + '\n'
+                f.write(str_line)
+         
+        # closing file
+        f.close() 
+        
+        
+        # file with request and response per line
+        data_folder = Path("D:/sand_box/output")
+        file_to_open = data_folder / "req_res.txt"
+        f = open(file_to_open,"a")
+         
+        for req_and_resp in list_req_and_res:
+            
+            # wrinting line to the file if it doesn't occurred yet
+            request = str(req_and_resp[0][2])
+            
+            if not request + '\n' in requests_already_got:
+                response = str(req_and_resp[1][2])
+                request_response_line = 'req: ' + request + ' res: ' + response + '\n'
+                print('Inserting: ', request)
+                f.write(request_response_line)
+         
+        # closing file
+        f.close()  
+
 def main():
     
     # Giving directory path and file name
@@ -163,7 +247,7 @@ def main():
     # Getting all lines from file dados.txt
     lines = fileLines(path_to_directory, file_name)
     
-    # Leaving list in a treatable format
+    # Leaving lines list in a treatable format
     lines = adjust_list(lines)
     
     # Lists
@@ -176,7 +260,7 @@ def main():
     #     print (i)
     #===============================================================================
     
-    
+    # Removing separators in each line
     final_list = clean_all_lines(lines)
     
     print("Linhas a serem analisadas:")
@@ -259,5 +343,6 @@ def main():
     f.close()  
 
 if __name__ == "__main__":
-    main()
+    #main()
+    get_new_services()
         

@@ -62,6 +62,8 @@ def generate_xml(cap_file):
 
 
 def xml_treatment(xml_file_name):
+    print("Parsing XML file: ", xml_file_name)
+    
     data_folder = Path("D:/sand_box/cap_files/xml_files/")
     program_path = data_folder /  xml_file_name
     
@@ -80,7 +82,7 @@ def xml_treatment(xml_file_name):
     # Get communication lines
     
     data_node = root.find("Data")
-    print(data_node[0][0].tag)
+    
     # list to store communication lines
     com_list = []
     # list to store one communication
@@ -110,6 +112,7 @@ def occurred_cases2(full_vector):
 
 def cap_files():
     ''' Return a list with all path to cap files from a specific directory'''
+    
     if not os.path.isdir("D:/sand_box/cap_files"):
         print("Missing cap_file directory...")
         print("Missing captured files...")
@@ -130,17 +133,18 @@ def cap_files():
 
 def xml_files():
     ''' Return a list with all path to xml files from a specific directory'''
-    if not os.path.isdir("D:/sand_box/cap_files/xml_files"):
-        print("Missing cap_file directory...")
-        print("Missing xml files...")
-        print("Creating directory xml_files...")
-        os.makedirs("D:/sand_box/cap_files/xml_files")
    
     all_cap_path = os.listdir("D:/sand_box/cap_files/xml_files")
     return all_cap_path
 
 
 def move_xml_files():
+    if not os.path.isdir("D:/sand_box/cap_files/xml_files"):
+        print("Missing xml_files directory...")
+        print("Missing xml files...")
+        print("Creating directory xml_files...")
+        os.makedirs("D:/sand_box/cap_files/xml_files")
+            
     dir_files = os.listdir("D:/sand_box/cap_files")
     
     for item in dir_files:
@@ -193,7 +197,9 @@ def main():
     
      
     all_cap_files = cap_files()
+    
     # Generating all XML files from cap files
+    print("Creating XML files from:\n")
     for cap_file in all_cap_files:
         print(cap_file)
         generate_xml(cap_file)
@@ -207,23 +213,33 @@ def main():
     
     cap_object_list = []
     
+    print("\n\nParsing XML files:\n")
+    
     for xml_file in all_xml_files:
         xml_dict, com_list = xml_treatment(xml_file)
         cap_object_list.append(captured_config(xml_dict, com_list))
     
     # Putting communication in a file
+    
+    # Creating output dir
     if not os.path.isdir("D:/sand_box/output"):
         print("Creating directory output...")
         os.makedirs("D:/sand_box/output")
 
     txt_file_list = []
     
+    if not os.path.isdir("D:/sand_box/cap_files/txt_files"):
+        print("Creating directory txt_files...")
+        os.makedirs("D:/sand_box/cap_files/txt_files")
+        
+    # Open a .txt file to each xml file 
     for cap_file in all_cap_files:
         txt_file_list.append(open("D:/sand_box/cap_files/txt_files/" + cap_file[:-4] + 'txt',"w"))
     
-    
+    # Choose of address communication filter to select specific module from captured files
     communication_filter = choose_filter()
-        
+    
+    # Wrinting communication (requests and responses) to each .txt file        
     for i, txt_file in enumerate(txt_file_list):
         communication = cap_object_list[i].get_communication()
         # Putting all lines into txt file
@@ -236,7 +252,7 @@ def main():
         txt_file.close()  
     
         
-    input("PRESS ENTER TO FINISH!!!")
+    input("All .txt files were created!\nPress enter to Continue.")
     
 if __name__ == "__main__":
     main()

@@ -1,8 +1,14 @@
-INSTUPCSV_third
-C:\Users\155 X-MX\eclipse-workspace\Test\CSV_third.py
-INFOS:&&2|1|2|0|3|4|5&&2|4|2|0|3|22|5&&3|5|2|0|3|71|5
-directory_path=5
+INSTUPsecond
+C:\Users\155 X-MX\eclipse-workspace\Test\second.py
+INFOS:&&2|1|2|0|3|10|5&&2|4|2|0|3|28|5&&2|5|2|0|3|39|5&&2|6|2|0|3|55|5&&2|7|2|0|3|78|5&&2|8|2|0|3|103|5&&2|9|2|0|3|132|5&&2|10|2|0|3|147|5&&2|11|2|0|3|241|5
+C:\Users\155 X-MX\eclipse-workspace\Test\second.py=3
+req_and_res=6
+clean_all_lines=9
+occurred_cases=4
+occurred_cases2=5
+line_adjust=7
 fileLines=1
-CSV_third=2
-C:\Users\155 X-MX\eclipse-workspace\Test\CSV_third.py=3
-generate_csv=4
+main=11
+get_new_services=10
+adjust_list=8
+second=2

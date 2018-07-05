@@ -155,7 +155,7 @@ def move_xml_files():
 def choose_filter():
     """ Choose a specific filter to get a specific communication from cap files """
     choice = ''
-    valid_list = ['1','2','3','4','5','6']
+    valid_list = ['1','2','3','4','5','6','7']
     while not choice in valid_list:
         choice = input("Choose a filter to use:\n" +
                        "1 - body - 745, 765\n" +
@@ -163,7 +163,8 @@ def choose_filter():
                        "3 - cluster - 743, 763\n" +
                        "4- steering - 742, 762\n" +
                        "5 - ABS - 740, 760\n" +
-                       "6 - airbag - 752, 772\n")
+                       "6 - airbag - 752, 772\n"+
+                       "7 - ABS_volvo_xc60 - 760, 768\n")
         if not choice in valid_list:
             print("\nChoose a valid option!\n")
     
@@ -175,6 +176,7 @@ def choose_filter():
     steering = ["742","762"] # Direcao in Portuguese
     ABS = ["740","760"] 
     airbag = ["752","772"]
+    ABS_volvo_xc60 = ["760","768"]
     
     communication_filter = []
     
@@ -190,6 +192,8 @@ def choose_filter():
         communication_filter = ABS
     elif choice == '6':
         communication_filter = airbag
+    elif choice == '7':
+        communication_filter = ABS_volvo_xc60 
         
     return communication_filter
 

@@ -109,14 +109,14 @@ def adjust_list(list_to_adjust):
     In this case it is checking if first char is a number.
     If it does not, remove first line'''
     # if the first line from file dados.txt is not valid pop it
-    if not list_to_adjust[0][0].isdigit(): # Check if the first position in first line is a digit Ex: . (first line is just a point)
+    while not list_to_adjust[0][0].isdigit(): # Check if the first position in first line is a digit Ex: . (first line is just a point)
         list_to_adjust.pop(0) # if not pop the first line
 
 
     ''' Check if first line is a service or a response. If it is a response pop it.'''
         
     new_first_line = line_adjust(list_to_adjust[0])
-    response_values = ['4','5','6','7'] # values with CSV_third bit enable Ex: 0101
+    response_values = ['4','5','6','7','C','D','E','F'] # values with third bit enable Ex: 0101
     if new_first_line[2][0] in response_values: # Check if the first position in first line is a request
         list_to_adjust.pop(0) # if not pop the first line
     

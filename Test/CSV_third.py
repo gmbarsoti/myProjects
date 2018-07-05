@@ -68,6 +68,6 @@ def generate_csv(directory_path):
         
 
 if __name__ == "__main__":
-    directory_path = 'D:/sand_box/output'
+    directory_path = 'C:/Users/155 X-MX/Desktop/sand_box'
     generate_csv(directory_path)
     

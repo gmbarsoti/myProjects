@@ -1,5 +1,8 @@
-INSTUPframes_can
-C:\Users\155 X-MX\eclipse-workspace\Test\frames_can.py
-INFOS:&&2|1|1|0|2|12|5
+INSTUPtest
+C:\Users\155 X-MX\eclipse-workspace\Test\test.py
+INFOS:&&2|1|2|0|3|8|5&&2|4|2|0|3|53|5&&2|5|2|0|3|79|5
+C:\Users\155 X-MX\eclipse-workspace\Test\test.py=3
+scanner_module_address=4
+test=2
 frames_can=1
-C:\Users\155 X-MX\eclipse-workspace\Test\frames_can.py=2
+mec=5

@@ -2,17 +2,17 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="" key="selection"/>
+		<item value="Open" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="open"/>
 			<item value="os.mkdir"/>
 			<item value="os.mk"/>
 			<item value="mkdir"/>
 			<item value="print"/>
-			<item value="open"/>
 			<item value="remove_line_separator"/>
 			<item value="pop"/>
 			<item value="occurred requests.txt"/>

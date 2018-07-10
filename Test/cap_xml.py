@@ -7,6 +7,7 @@ from subprocess import run, PIPE
 from pathlib import Path
 import xml.etree.ElementTree as ET
 import os
+import shutil
 
 
 
@@ -149,19 +150,34 @@ def move_xml_files():
     
     for item in dir_files:
         if item[-3:] == "xml":
-            os.rename("D:/sand_box/cap_files/" + item, "D:/sand_box/cap_files/xml_files/" + item)
+            shutil.move("D:/sand_box/cap_files/" + item, "D:/sand_box/cap_files/xml_files/" + item)
             
-            
+def custom_filter_insert():
+
+    scanner_addr = input("Please insert SCANNER address:\n")
+    module_addr = input("Please insert MODULE address:\n")
+    
+    scanner_module_addr_code = [scanner_addr,module_addr]
+    
+    
+    return scanner_module_addr_code
+    
+    
+    
+    
+    
+    
 def choose_filter():
     """ Choose a specific filter to get a specific communication from cap files """
     choice = ''
-    valid_list = ['1','2','3','4','5','6','7']
+    valid_list = ['0','1','2','3','4','5','6','7']
     while not choice in valid_list:
         choice = input("Choose a filter to use:\n" +
+                       "0 - Insert custom filter\n"+
                        "1 - body - 745, 765\n" +
                        "2 - engine - 7E0, 7E8\n" +
                        "3 - cluster - 743, 763\n" +
-                       "4- steering - 742, 762\n" +
+                       "4 - steering - 742, 762\n" +
                        "5 - ABS - 740, 760\n" +
                        "6 - airbag - 752, 772\n"+
                        "7 - ABS_volvo_xc60 - 760, 768\n")
@@ -180,7 +196,9 @@ def choose_filter():
     
     communication_filter = []
     
-    if choice == '1':
+    if choice == '0':
+        communication_filter = custom_filter_insert()
+    elif choice == '1':
         communication_filter = body
     elif choice == '2':
         communication_filter = engine
@@ -194,11 +212,11 @@ def choose_filter():
         communication_filter = airbag
     elif choice == '7':
         communication_filter = ABS_volvo_xc60 
-        
+    
     return communication_filter
 
+
 def main():
-    
      
     all_cap_files = cap_files()
     

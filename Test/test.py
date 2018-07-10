@@ -115,9 +115,9 @@ if __name__ == "__main__":
     # file_name = "ApagaMemoria.txt"  
     # frames_can(file_name)
     #===========================================================================
-    scanner_module_address("D:/sand_box/FramesCAN/test/LeiturasMotorLigado.txt")
+    #scanner_module_address("D:/sand_box/FramesCAN/test/LeiturasMotorLigado.txt")
     #scanner_module_address("D:/sand_box/FramesCAN/test/SpecialFunction_Calibration.txt")
-    #mec()
+    mec()
 
 
 

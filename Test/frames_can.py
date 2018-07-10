@@ -3,7 +3,7 @@ Created on 4 de jul de 2018
 
 @author: 155 X-MX
 '''
-import shutil
+from shutil import move, copy
 from pathlib import Path
 from os.path import isfile
 from os import remove, rename, chdir, getcwd, listdir, path
@@ -27,14 +27,14 @@ def frames_can(file_name):
     file_path = source_path / file_name
     
     dest_path = Path("D:/sand_box/FramesCAN")
-    shutil.copy(file_path, dest_path)
+    copy(file_path, dest_path)
     print(".txt file copied!")
     
     # Renaming .txt file to captura.txt
     old_name = dest_path / file_name
     new_name = dest_path / "captura.txt"
     
-    rename(old_name, new_name)
+    move(old_name, new_name)
     print(".txt file renamed!")
     
     
@@ -64,11 +64,11 @@ if __name__ == "__main__":
     all_cap_path = []
     
     for item in all_itens_on_directory:
-        path_to_check = "D:/sand_box/cap_files/txt_files" + item
+        path_to_check = "D:/sand_box/cap_files/txt_files/" + item
         if path.isfile(path_to_check):
             all_cap_path.append(item)
     
     for i in all_itens_on_directory:
         frames_can(i)
-        rename("D:/sand_box/FramesCAN/dados.txt", "D:/sand_box/FramesCAN/test/" + i)
+        move("D:/sand_box/FramesCAN/dados.txt", "D:/sand_box/FramesCAN/test/" + i)
 

@@ -6,6 +6,16 @@ Created on 12 de jun de 2018
 from pathlib import Path
 import os.path
 
+class request_response:
+    request = ''
+    response = ''
+    def __init__(self, req, resp):
+        self.request = req
+        self.response = resp
+        
+    def print_req_resp(self):
+        print("Request: ", self.request)
+        print("Response: ", self.response)
 
 def fileLines(path_to_folder, file_name):
     '''return a list with all lines of a txt file'''
@@ -74,6 +84,152 @@ def req_and_res(full_vector):
         
     
     return ret_vector
+
+def is_a_request(line):
+    request_response_id = line[2][0]
+    requests_values = ['0','1','2','3','8','9','A','B']
+    if request_response_id in requests_values:
+        return True
+    else:
+        return False
+
+def is_a_response(line):
+    return not is_a_request(line)
+
+def list_ended(list_lenght, list_index):
+    if list_index < list_lenght:
+        return False
+    else:
+        return True
+
+
+def req_and_res_2(full_list):
+    """Return a list with a request and a response per item in list
+    Based in if third bit is set or not"""
+
+    request_response_list = []
+    
+    list_index = 0
+    list_lenght = len(full_list)
+    
+    while not list_ended(list_lenght, list_index):
+        
+        request_response_object = request_response("","")
+        
+        line = full_list[list_index]
+        data = line[2]
+        
+        if is_a_request(line):
+            # it is a request
+            request_response_object.request = data
+            
+            list_index += 1
+            if list_ended(list_lenght, list_index):
+                # list has ended
+                pass
+            
+            else:
+                line = full_list[list_index]
+            
+                if is_a_response(line):
+                    
+                    data = line[2]
+                    
+                    # skipping pending responses and tester present
+                    while (data == '7F.10.78.' or data == '3E.01.') and (not list_ended(list_lenght, list_index)):
+                        # case that response have to wait (response 7F.10.78 - 78 means response is pending) and its tester present communication
+                        list_index += 1
+                        
+                        if list_ended(list_lenght, list_index):
+                            pass
+                        else:
+                            line = full_list[list_index]
+                            data = line[2]
+                            
+                    if list_ended(list_lenght, list_index):   
+                        pass
+                    else:
+                        response = data
+                        request_response_object.response = response
+                        list_index += 1
+                
+                    
+                else:
+                    request_response_object.response = 'no response - the following communication is also a request!'
+        else:
+            list_index += 1
+            # ignoring intial lines thar are not requests
+            pass
+            
+        request_response_list.append(request_response_object)
+    
+    for i in request_response_list:
+        i.print_req_resp()
+        print("")
+    
+#===============================================================================
+#     
+#     iter_lines = iter(full_list)
+# 
+#     
+#     # control to get the first request and skip responses at full_list beginning 
+#     first_request = False
+#     ended_iteration = True
+#     no_requests_found = False
+#     
+#     while not first_request and ended_iteration:
+#         try:
+#             line = next(iter_lines)                                 
+#         except StopIteration:
+#             ended_iteration = False
+#             no_requests_found = True
+#         else:
+#             # checking if it is the first request
+#             request_response_id = line[2][0]
+#             if request_response_id in requests_values:
+#                 first_request = True
+#             else:
+#                 # skipping responses until to find the first request in full_list
+#                 pass
+#             
+#     if no_requests_found:
+#         # none resquests were found at this list
+#         pass
+#     else:
+#         # resquest(s) was/were found at this list
+#         ended_iteration =  True
+#         no_response = False # control if a request did not have a response
+#         
+#         while ended_iteration:
+#             
+#             # resquest or response verification
+#             request_response_id = line[2][0]
+#             
+#             if request_response_id in requests_values:
+#                 # this line is a request
+#                 if no_response:
+#                     # last resquest did not have a response
+#                     # adding empty list to separate requests
+#                     requests.append([])
+#                     requests.append(line)
+#                 else:
+#                     requests.append(line)
+#                     no_response = True
+#             else:
+#                 # this line is a response
+#                 no_response = False
+#                 responses.append(line)   
+#             
+#             # getting the next element
+#             try:
+#                 line = next(iter_lines)                                 
+#             except StopIteration:
+#                 ended_iteration = False
+#===============================================================================
+               
+                                   
+                
+
 
 def line_adjust(line):
     ''' Return a list without unnecessary separators'''
@@ -144,11 +300,11 @@ def clean_all_lines(lines_list):
 
 ##########
 
-def get_new_services():
+def get_new_services(file_name_after_framesCAN):
     
     # Path to data.txt directory
-    path_to_directory_framesCAN = "D:/sand_box/FramesCAN"
-    data_txt_file = "dados.txt"
+    path_to_directory_framesCAN = "D:/sand_box/FramesCAN/test"
+    data_txt_file = file_name_after_framesCAN
     
     # Getting all lines from file dados.txt
     lines = fileLines(path_to_directory_framesCAN, data_txt_file)
@@ -162,6 +318,10 @@ def get_new_services():
     print("Lines to be analysed:")
     for b,i in enumerate(final_list):
         print (i,b)
+        
+        
+    req_and_res_2(final_list)    
+    
     
     # Organizing requests and responses in a list
     list_req_and_res = req_and_res(final_list)
@@ -275,7 +435,6 @@ def main():
     only_responses = final_list[1::2]
     
     
-        
     
     #####
     vec_req_and_res = req_and_res(final_list)
@@ -344,5 +503,5 @@ def main():
 
 if __name__ == "__main__":
     #main()
-    get_new_services()
+    get_new_services('ActuatorsTest_ActiveBooster_Start_Stop_Cancel.txt')
         

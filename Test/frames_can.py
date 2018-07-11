@@ -6,7 +6,7 @@ Created on 4 de jul de 2018
 from shutil import move, copy
 from pathlib import Path
 from os.path import isfile
-from os import remove, rename, chdir, getcwd, listdir, path
+from os import remove, chdir, getcwd, listdir, path
 from subprocess import  run, PIPE
 
 def frames_can(file_name):

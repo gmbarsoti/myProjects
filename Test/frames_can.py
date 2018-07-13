@@ -5,8 +5,8 @@ Created on 4 de jul de 2018
 '''
 from shutil import move, copy
 from pathlib import Path
-from os.path import isfile
-from os import remove, chdir, getcwd, listdir, path
+from os.path import isfile, isdir
+from os import remove, chdir, getcwd, listdir, path, makedirs
 from subprocess import  run, PIPE
 
 def frames_can(file_name):
@@ -59,16 +59,18 @@ def frames_can(file_name):
     
 if __name__ == "__main__":
     
+    all_itens_names = listdir("D:/sand_box/cap_files/txt_files")
     
-    all_itens_on_directory = listdir("D:/sand_box/cap_files/txt_files")
-    all_cap_path = []
+    if not isdir("D:/sand_box/FramesCAN/FramesCAN_processed/"):
+        print("Missing FramesCAN_processed directory...")
+        print("Creating directory FramesCAN_processed...")
+        makedirs("D:/sand_box/FramesCAN/FramesCAN_processed/")
+        
     
-    for item in all_itens_on_directory:
-        path_to_check = "D:/sand_box/cap_files/txt_files/" + item
+    for item_name in all_itens_names:
+        path_to_check = "D:/sand_box/cap_files/txt_files/" + item_name
         if path.isfile(path_to_check):
-            all_cap_path.append(item)
-    
-    for i in all_itens_on_directory:
-        frames_can(i)
-        move("D:/sand_box/FramesCAN/dados.txt", "D:/sand_box/FramesCAN/test/" + i)
+            frames_can(item_name)
+            move("D:/sand_box/FramesCAN/dados.txt", "D:/sand_box/FramesCAN/FramesCAN_processed/" + item_name)
+    remove("D:/sand_box/FramesCAN/captura.txt")
 

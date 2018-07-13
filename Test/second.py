@@ -5,6 +5,8 @@ Created on 12 de jun de 2018
 '''
 from pathlib import Path
 import os.path
+from os import listdir
+from os.path import isfile
 
 class request_response:
     request = ''
@@ -59,6 +61,23 @@ def occurred_cases2(full_vector):
             ret_vector.append(item) # store request and response
        
     return ret_vector
+
+
+def occurred_cases3(req_res_class_list):
+    
+    ''' Returna list with just an occurrence of each service request 
+    that is made in a comunication list'''
+    filtered_req_res_list = [] # list that returns a once occurred request and its response
+    services_occurred = [] # list to store services that have already been found
+    
+    for item in req_res_class_list:
+        req = item.request # getting just the service
+        if not req in services_occurred: # if service was not found yet
+            services_occurred.append(req) # record this service occurrence
+            
+            filtered_req_res_list.append(item) # store request and response
+       
+    return filtered_req_res_list
 
 
 
@@ -166,70 +185,11 @@ def req_and_res_2(full_list):
     for i in request_response_list:
         i.print_req_resp()
         print("")
-    
-#===============================================================================
-#     
-#     iter_lines = iter(full_list)
-# 
-#     
-#     # control to get the first request and skip responses at full_list beginning 
-#     first_request = False
-#     ended_iteration = True
-#     no_requests_found = False
-#     
-#     while not first_request and ended_iteration:
-#         try:
-#             line = next(iter_lines)                                 
-#         except StopIteration:
-#             ended_iteration = False
-#             no_requests_found = True
-#         else:
-#             # checking if it is the first request
-#             request_response_id = line[2][0]
-#             if request_response_id in requests_values:
-#                 first_request = True
-#             else:
-#                 # skipping responses until to find the first request in full_list
-#                 pass
-#             
-#     if no_requests_found:
-#         # none resquests were found at this list
-#         pass
-#     else:
-#         # resquest(s) was/were found at this list
-#         ended_iteration =  True
-#         no_response = False # control if a request did not have a response
-#         
-#         while ended_iteration:
-#             
-#             # resquest or response verification
-#             request_response_id = line[2][0]
-#             
-#             if request_response_id in requests_values:
-#                 # this line is a request
-#                 if no_response:
-#                     # last resquest did not have a response
-#                     # adding empty list to separate requests
-#                     requests.append([])
-#                     requests.append(line)
-#                 else:
-#                     requests.append(line)
-#                     no_response = True
-#             else:
-#                 # this line is a response
-#                 no_response = False
-#                 responses.append(line)   
-#             
-#             # getting the next element
-#             try:
-#                 line = next(iter_lines)                                 
-#             except StopIteration:
-#                 ended_iteration = False
-#===============================================================================
+             
+    return  request_response_list
                
                                    
                 
-
 
 def line_adjust(line):
     ''' Return a list without unnecessary separators'''
@@ -303,11 +263,15 @@ def clean_all_lines(lines_list):
 def get_new_services(file_name_after_framesCAN):
     
     # Path to data.txt directory
-    path_to_directory_framesCAN = "D:/sand_box/FramesCAN/test"
+    path_to_directory_framesCAN = "D:/sand_box/FramesCAN/FramesCAN_processed"
     data_txt_file = file_name_after_framesCAN
     
     # Getting all lines from file dados.txt
     lines = fileLines(path_to_directory_framesCAN, data_txt_file)
+    
+    # if list is empty
+    if lines == []:
+        return 0
     
     # Leaving lines list in a treatable format
     lines = adjust_list(lines)
@@ -320,11 +284,11 @@ def get_new_services(file_name_after_framesCAN):
         print (i,b)
         
         
-    req_and_res_2(final_list)    
-    
+    a = req_and_res_2(final_list)    
+    occurred_cases3(a)
     
     # Organizing requests and responses in a list
-    list_req_and_res = req_and_res(final_list)
+    list_req_and_res = req_and_res_2(final_list)
     
     # Check if there was communication
     if list_req_and_res == 0:
@@ -335,12 +299,12 @@ def get_new_services(file_name_after_framesCAN):
     else:
         
         # Get just one occurence of each service in communicaton from dados.txt file
-        list_req_and_res = occurred_cases2(list_req_and_res)
+        list_req_and_res = occurred_cases3(list_req_and_res)
         req_vector = []
         
         # Getting just requests
-        for request in list_req_and_res:
-            req_vector.append(request[0][2])
+        for req_resp_object in list_req_and_res:
+            req_vector.append(req_resp_object.request)#request[0][2])
         
         print("\nRequests occured:\n")
         for i in req_vector:
@@ -384,13 +348,13 @@ def get_new_services(file_name_after_framesCAN):
         file_to_open = data_folder / "req_res.txt"
         f = open(file_to_open,"a")
          
-        for req_and_resp in list_req_and_res:
+        for req_and_resp_object in list_req_and_res:
             
             # wrinting line to the file if it doesn't occurred yet
-            request = str(req_and_resp[0][2])
+            request = req_and_resp_object.request #str(req_and_resp[0][2])
             
             if not request + '\n' in requests_already_got:
-                response = str(req_and_resp[1][2])
+                response = req_and_resp_object.response #str(req_and_resp[1][2])
                 request_response_line = 'req: ' + request + ' res: ' + response + '\n'
                 print('Inserting: ', request)
                 f.write(request_response_line)
@@ -503,5 +467,11 @@ def main():
 
 if __name__ == "__main__":
     #main()
-    get_new_services('ActuatorsTest_ActiveBooster_Start_Stop_Cancel.txt')
+        
+    all_itens_names = listdir("D:/sand_box/FramesCAN/FramesCAN_processed")       
+    
+    for item_name in all_itens_names:
+        path_to_check = "D:/sand_box/FramesCAN/FramesCAN_processed/" + item_name
+        if isfile(path_to_check):
+            get_new_services(item_name)
         

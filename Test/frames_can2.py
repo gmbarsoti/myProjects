@@ -15,18 +15,18 @@ def frames_can(file_name):
         3 - Generates data.txt file with organized requests and responses'''
     
     # remove file captura.txt
-    dest_path = Path("D:/sand_box/FramesCAN")
+    dest_path = Path("./FramesCAN")
     cap_file = dest_path / "captura.txt"
     if isfile(cap_file):
         print("Removing file: captura.txt")
         remove(cap_file)
     
     # Coping file to framesCAN directory
-    source_path = Path("D:/sand_box/cap_files/txt_files")
+    source_path = Path("./cap_files/txt_files")
     
     file_path = source_path / file_name
     
-    dest_path = Path("D:/sand_box/FramesCAN")
+    dest_path = Path("./FramesCAN")
     copy(file_path, dest_path)
     print(".txt file copied!")
     
@@ -42,15 +42,15 @@ def frames_can(file_name):
     
     main_dir = getcwd()
     
-    chdir("D:/sand_box/FramesCAN")
+    chdir("./FramesCAN")
     
     # Executing FramesCan.exe
     framesCAN_dir = main_dir + "\\FramesCAN"
     
-    program_dir_path = Path("D:/sand_box/FramesCAN")
+    program_dir_path = Path("./FramesCAN")
     program_path = program_dir_path / "FramesCAN.exe"
     
-    FramesCAN_return = run([str(program_path)], shell=True, stdout=PIPE)
+    FramesCAN_return = run("FramesCAN.exe", shell=True, stdout=PIPE)
     print("FramesCAN ran!")
     print("\n\nFramesCAN output:\n\n", FramesCAN_return.stdout)
     
@@ -59,20 +59,20 @@ def frames_can(file_name):
     chdir(main_dir)
 
 def frames_can_exec():
-    all_itens_names = listdir("D:/sand_box/cap_files/txt_files")
+    all_itens_names = listdir("./cap_files/txt_files")
     
-    if not isdir("D:/sand_box/FramesCAN/FramesCAN_processed/"):
+    if not isdir("./FramesCAN/FramesCAN_processed/"):
         print("Missing FramesCAN_processed directory...")
         print("Creating directory FramesCAN_processed...")
-        makedirs("D:/sand_box/FramesCAN/FramesCAN_processed/")
+        makedirs("./FramesCAN/FramesCAN_processed/")
         
     
     for item_name in all_itens_names:
-        path_to_check = "D:/sand_box/cap_files/txt_files/" + item_name
+        path_to_check = "./cap_files/txt_files/" + item_name
         if path.isfile(path_to_check):
             frames_can(item_name)
-            move("D:/sand_box/FramesCAN/dados.txt", "D:/sand_box/FramesCAN/FramesCAN_processed/" + item_name)
-    remove("D:/sand_box/FramesCAN/captura.txt")
+            move("./FramesCAN/dados.txt", "./FramesCAN/FramesCAN_processed/" + item_name)
+    remove("./FramesCAN/captura.txt")
 
 
 

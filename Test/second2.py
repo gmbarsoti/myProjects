@@ -263,7 +263,7 @@ def clean_all_lines(lines_list):
 def get_new_services(file_name_after_framesCAN):
     
     # Path to data.txt directory
-    path_to_directory_framesCAN = "D:/sand_box/FramesCAN/FramesCAN_processed"
+    path_to_directory_framesCAN = "./FramesCAN/FramesCAN_processed"
     data_txt_file = file_name_after_framesCAN
     
     # Getting all lines from file dados.txt
@@ -311,7 +311,7 @@ def get_new_services(file_name_after_framesCAN):
             print (i)    
         
         # Getting requests that already occurred
-        data_folder = Path("D:/sand_box/output")
+        data_folder = Path("./output")
         file_to_open = data_folder / "occurred_requests.txt"
         requests_already_got = []
         
@@ -327,7 +327,7 @@ def get_new_services(file_name_after_framesCAN):
             f.close() 
         
         # recording cases in a file
-        data_folder = Path("D:/sand_box/output")
+        data_folder = Path("./output")
         file_to_open = data_folder / "occurred_requests.txt"
         f = open(file_to_open,"a")
          
@@ -344,7 +344,7 @@ def get_new_services(file_name_after_framesCAN):
         
         
         # file with request and response per line
-        data_folder = Path("D:/sand_box/output")
+        data_folder = Path("./output")
         file_to_open = data_folder / "req_res.txt"
         f = open(file_to_open,"a")
          
@@ -467,10 +467,10 @@ def main():
 
 
 def services_occurrences():
-    all_itens_names = listdir("D:/sand_box/FramesCAN/FramesCAN_processed")       
+    all_itens_names = listdir("./FramesCAN/FramesCAN_processed")       
     
     for item_name in all_itens_names:
-        path_to_check = "D:/sand_box/FramesCAN/FramesCAN_processed/" + item_name
+        path_to_check = "./FramesCAN/FramesCAN_processed/" + item_name
         if isfile(path_to_check):
             get_new_services(item_name)
         

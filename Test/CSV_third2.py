@@ -35,7 +35,7 @@ def generate_csv(directory_path):
     # Create string to csv file   
     # writing to csv file
     
-        directory_path = 'D:/sand_box/output'
+        directory_path = './output'
         file_name = 'req_res_table.csv'
         
         data_folder = Path(directory_path) # format ex: "C:/Users/155 X-MX/Desktop/Preenche Servicos"
@@ -67,7 +67,7 @@ def generate_csv(directory_path):
         csv_file.close()  
 
 def make_csv():
-    directory_path = 'D:/sand_box/output'
+    directory_path = './output'
     generate_csv(directory_path)
 
 if __name__ == "__main__":

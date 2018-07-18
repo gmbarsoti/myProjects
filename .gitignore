@@ -1,2 +1,8 @@
 RemoteSystemsTempFiles/
 .metadata/
+services_getter_dev/
+Test/dist/
+Test/build
+Test/cap_file
+Test/__pycache__
+Test/.settings

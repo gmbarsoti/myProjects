@@ -19,6 +19,19 @@ class request_response:
         print("Request: ", self.request)
         print("Response: ", self.response)
 
+class request_responses:
+    request = ''
+    responses = []
+    def __init__(self, req, resp):
+        self.request = req
+        self.responses = resp
+        
+    def print_req_resp(self):
+        print("Request: ", self.request)
+        print("Responses: ")
+        for resp in self.responses:
+            print(resp)
+        
 def fileLines(path_to_folder, file_name):
     '''return a list with all lines of a txt file'''
     #data_folder = Path("C:/Users/155 X-MX/Desktop/Preenche Servicos")
@@ -80,6 +93,36 @@ def occurred_cases3(req_res_class_list):
     return filtered_req_res_list
 
 
+def occurred_cases4(req_res_class_list2):
+    
+    ''' Returna list with just an occurrence of each service request 
+    that is made in a comunication list'''
+    filtered_req_res_list = [] # list that returns a once occurred request and its response
+    services_occurred = [] # list to store services that have already been found
+    
+    for item in req_res_class_list2:
+        
+        req = item.request # getting just the service
+    
+        if req in services_occurred: # if service was already found
+            if req == '19.02.20.':
+                print(req)
+            elem_pos = services_occurred.index(req) # getting position
+            resp = item.responses[0]
+            # Appending different response to a request 
+            if not resp in filtered_req_res_list[elem_pos].responses:
+                filtered_req_res_list[elem_pos].responses.append(resp)
+        
+        if not req in services_occurred: # if service was not found yet
+            services_occurred.append(req) # record this service occurrence
+            
+            filtered_req_res_list.append(item) # store request and response
+            
+        
+       
+    return filtered_req_res_list
+
+
 
 def req_and_res(full_vector):
     """Return a list with a request and a response per item in list"""
@@ -133,7 +176,7 @@ def req_and_res_2(full_list):
     
     while not list_ended(list_lenght, list_index):
         
-        request_response_object = request_response("","")
+        request_response_object = request_responses("",[])
         
         line = full_list[list_index]
         data = line[2]
@@ -145,6 +188,7 @@ def req_and_res_2(full_list):
             list_index += 1
             if list_ended(list_lenght, list_index):
                 # list has ended
+                request_response_object.responses.append('list_ended')
                 pass
             
             else:
@@ -166,15 +210,16 @@ def req_and_res_2(full_list):
                             data = line[2]
                             
                     if list_ended(list_lenght, list_index):   
+                        request_response_object.responses.append('list_ended')
                         pass
                     else:
                         response = data
-                        request_response_object.response = response
+                        request_response_object.responses.append(response)
                         list_index += 1
                 
                     
                 else:
-                    request_response_object.response = 'no response - the following communication is also a request!'
+                    request_response_object.responses.append('no_response_-_the_following_communication_is_also_a_request!')
         else:
             list_index += 1
             # ignoring intial lines thar are not requests
@@ -299,6 +344,7 @@ def get_new_services(file_name_after_framesCAN):
     else:
         
         # Get just one occurence of each service in communicaton from dados.txt file
+        list_req_and_res2 = occurred_cases4(list_req_and_res)
         list_req_and_res = occurred_cases3(list_req_and_res)
         req_vector = []
         
@@ -354,116 +400,16 @@ def get_new_services(file_name_after_framesCAN):
             request = req_and_resp_object.request #str(req_and_resp[0][2])
             
             if not request + '\n' in requests_already_got:
-                response = req_and_resp_object.response #str(req_and_resp[1][2])
-                request_response_line = 'req: ' + request + ' res: ' + response + '\n'
+                responses = req_and_resp_object.responses #str(req_and_resp[1][2])
+                responses_str = ''
+                for resp in responses:
+                    responses_str = responses_str + resp + ' - '
+                request_response_line = 'req: ' + request + ' res: ' + responses_str + '\n'
                 print('Inserting: ', request)
                 f.write(request_response_line)
          
         # closing file
         f.close()  
-
-def main():
-    
-    # Giving directory path and file name
-    path_to_directory = "C:/Users/155 X-MX/Desktop/Preenche Servicos"
-    file_name = "dados.txt"
-    
-    # Getting all lines from file dados.txt
-    lines = fileLines(path_to_directory, file_name)
-    
-    # Leaving lines list in a treatable format
-    lines = adjust_list(lines)
-    
-    # Lists
-    cleaned_line = []
-    positions = []
-    
-    # List of lists. Each position is a list that contains line informations from dados.txt 
-    #===============================================================================
-    # for i in lines:
-    #     print (i)
-    #===============================================================================
-    
-    # Removing separators in each line
-    final_list = clean_all_lines(lines)
-    
-    print("Linhas a serem analisadas:")
-    for b,i in enumerate(final_list):
-        print (i,b)
-    
-    ######
-    
-    # getting just even positions Ex: 0,2,4,...
-    only_requests = final_list[::2]
-    # getting just odd positions Ex: 1,3,5,...
-    only_responses = final_list[1::2]
-    
-    
-    
-    #####
-    vec_req_and_res = req_and_res(final_list)
-    if vec_req_and_res == 0:
-        print('finishing app....')
-        quit()
-        
-    vec_req_and_res = occurred_cases2(vec_req_and_res)
-    req_vector = []
-    
-    for i in vec_req_and_res:
-        req_vector.append(i[0][2])
-        #print (i[0][2])
-    
-    for i in req_vector:
-        print (i)    
-    
-    # Getting requests that already occurred
-    # open file
-    data_folder = Path("C:/Users/155 X-MX/Desktop/")
-    file_to_open = data_folder / "occurred requests.txt"
-    requests_already_got = []
-    #checking if the file already exists
-    if os.path.isfile(file_to_open): 
-        f = open(file_to_open,"r")
-        
-        # Getting all lines    
-        requests_already_got = f.readlines()
-        
-        f.close() 
-    
-    # recording cases in a file
-    
-    # open file
-    data_folder = Path("C:/Users/155 X-MX/Desktop/")
-    file_to_open = data_folder / "occurred requests.txt"
-    f = open(file_to_open,"a")
-     
-    for line in req_vector:
-        # checking if the request already occurred
-        # if not, insert this request at file occurred requests.txt
-        if not line+'\n' in requests_already_got:
-            # wrinting line to the file
-            str_line = line + '\n'
-            f.write(str_line)
-     
-    # closing file
-    f.close() 
-    
-    
-    # open file
-    #occurred_cases2(vec_req_and_res)
-    data_folder = Path("C:/Users/155 X-MX/Desktop/")
-    file_to_open = data_folder / "req_res.txt"
-    f = open(file_to_open,"a")
-     
-    for line in vec_req_and_res:
-        # wrinting line to the file
-        if not str(line[0][2])+'\n' in requests_already_got:
-            str_line = 'req: '+str(line[0][2])+' res: '+str(line[1][2])+'\n'
-            print('Inserting: ',line[0][2])
-            f.write(str_line)
-     
-    # closing file
-    f.close()  
 
 
 def services_occurrences():

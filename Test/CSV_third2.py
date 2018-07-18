@@ -48,18 +48,25 @@ def generate_csv(directory_path):
         for line in all_lines:
             # change to list
             line_list = line.split(' ')
-            
+            while '-' in line_list: 
+                line_list.remove('-')
+                
             # get requests and responses
             request = line_list[1]
-            response = line_list[3]#[:-1] # response without \n
+            responses = line_list[3:-1]#[:-1] # response without \n
             
+            
+            resp_str = '' 
+            for resp in responses:
+                resp_str = resp_str + resp + ','  
+            
+       
             # Create string to csv file
-            line_to_csv = request + ',' + response 
+            line_to_csv = request + ',' + resp_str[:-1] + '\n' 
             
             # writing to csv file
             csv_file.write(line_to_csv)
             
-            print(line_list)
             print(line_to_csv)
             
         

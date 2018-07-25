@@ -1,0 +1,7 @@
+.tmp.drivedownload/
+FramesCAN/
+cap_files/
+__pycache__/
+output/
+.project
+.pydevproject

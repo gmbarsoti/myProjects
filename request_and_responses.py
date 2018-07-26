@@ -1,31 +1,9 @@
-from pathlib import Path
 from adjust_list import adjust_list, clean_all_lines
-from aux_functions import list_ended, is_a_request
+from aux_functions import list_ended, is_a_request, fileLines
 from request_responses_classes import request_responses
 from get_response import get_response
 from os import listdir
 from os.path import isfile
-
-def fileLines(path_to_folder, file_name):
-    '''return a list with all lines of a txt file'''
-    #data_folder = Path("C:/Users/155 X-MX/Desktop/Preenche Servicos")
-    data_folder = Path(path_to_folder)
-    file_to_open = data_folder / file_name
-     
-    f = open(file_to_open,"r")
-     
-    if not file_to_open.exists():
-        print("Oops, file doesn't exist!")
-    #===========================================================================
-    # else:
-    #     print(file_name)
-    #     print("Yay, the file exists!")
-    #===========================================================================
-         
-    # Getting all lines    
-    all_lines = f.readlines()
-    #print('lines len: ', str(len(all_lines)))
-    return all_lines
 
 
 def req_and_res(full_list):

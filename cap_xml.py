@@ -122,6 +122,9 @@ def custom_filter_insert():
     scanner_addr = input("Please insert SCANNER address:\n")
     module_addr = input("Please insert MODULE address:\n")
     
+    scanner_addr = scanner_addr.upper()
+    module_addr = module_addr.upper()
+    
     scanner_module_addr_code = [scanner_addr,module_addr]
     
     

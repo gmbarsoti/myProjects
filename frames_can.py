@@ -6,7 +6,7 @@ Created on 4 de jul de 2018
 from shutil import move, copy
 from pathlib import Path
 from os.path import isfile, isdir
-from os import remove, chdir, getcwd, listdir, path, makedirs
+from os import remove, chdir, getcwd, listdir, makedirs
 from subprocess import  run, PIPE
 import shutil
 
@@ -61,7 +61,8 @@ def frames_can(file_name):
 
 def frames_can_exec():
     #cleaning up
-    shutil.rmtree('./FramesCAN/FramesCAN_processed/')
+    if isdir('./FramesCAN/FramesCAN_processed/'):
+        shutil.rmtree('./FramesCAN/FramesCAN_processed/')
     
     all_itens_names = listdir("./cap_files/txt_files")
     
@@ -73,7 +74,7 @@ def frames_can_exec():
     
     for item_name in all_itens_names:
         path_to_check = "./cap_files/txt_files/" + item_name
-        if path.isfile(path_to_check):
+        if isfile(path_to_check):
             frames_can(item_name)
             move("./FramesCAN/dados.txt", "./FramesCAN/FramesCAN_processed/" + item_name)
     remove("./FramesCAN/captura.txt")

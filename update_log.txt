@@ -1,0 +1,3 @@
+Added:
+Scanner and module address can be typed in upper and lower case
+Generating a file with all lines from captured files to use with Juninho's application

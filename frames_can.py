@@ -23,7 +23,7 @@ def frames_can(file_name):
         remove(cap_file)
     
     # Coping file to framesCAN directory
-    source_path = Path("./cap_files/txt_files")
+    source_path = Path("./../cap_files/txt_files")
     
     file_path = source_path / file_name
     
@@ -64,7 +64,7 @@ def frames_can_exec():
     if isdir('./FramesCAN/FramesCAN_processed/'):
         shutil.rmtree('./FramesCAN/FramesCAN_processed/')
     
-    all_itens_names = listdir("./cap_files/txt_files")
+    all_itens_names = listdir("./../cap_files/txt_files")
     
     if not isdir("./FramesCAN/FramesCAN_processed/"):
         print("Missing FramesCAN_processed directory...")
@@ -73,7 +73,7 @@ def frames_can_exec():
         
     
     for item_name in all_itens_names:
-        path_to_check = "./cap_files/txt_files/" + item_name
+        path_to_check = "./../cap_files/txt_files/" + item_name
         if isfile(path_to_check):
             frames_can(item_name)
             move("./FramesCAN/dados.txt", "./FramesCAN/FramesCAN_processed/" + item_name)

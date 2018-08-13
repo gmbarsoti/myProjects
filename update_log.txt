@@ -1,3 +1,8 @@
 Added:
 Scanner and module address can be typed in upper and lower case
 Generating a file with all lines from captured files to use with Juninho's application
+
+13-08-18
+
+Empty captured files (.ctec) are now treated correctly;
+New directories structure to a better application usage;

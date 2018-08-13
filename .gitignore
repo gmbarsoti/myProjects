@@ -1,10 +1,9 @@
-build/
-FramesCAN/
-cap_files/
+.tmp.drivedownload/
 __pycache__/
+build/
 dist/
-output/
+FramesCAN/
 .project
 .pydevproject
-services_getter.spec
 ProtocolAnalyzerSaveXml.exe
+services_getter.spec

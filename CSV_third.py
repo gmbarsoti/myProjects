@@ -2,7 +2,7 @@ from pathlib import Path
 
 def generate_cvs_file(request_responses_list):
     
-    data_folder = Path("./output")
+    data_folder = Path("./../output")
     file_to_open = data_folder / "req_res.csv"
     
     csv_file = open(file_to_open,"w")

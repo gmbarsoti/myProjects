@@ -18,7 +18,7 @@ def generate_xml(cap_file):
     program_path = root_path / "ProtocolAnalyzerSaveXml.exe"
     
     
-    cap_files_path = Path("./cap_files/")
+    cap_files_path = Path("./../cap_files/")
     cap_path = cap_files_path / cap_file
     
     run([str(program_path),str(cap_path)], stdout=PIPE)
@@ -28,7 +28,7 @@ def generate_xml(cap_file):
 def xml_treatment(xml_file_name):
     #print("Parsing XML file: ", xml_file_name)
     
-    data_folder = Path("./cap_files/xml_files/")
+    data_folder = Path("./../cap_files/xml_files/")
     program_path = data_folder /  xml_file_name
     
     tree = ET.parse(program_path)
@@ -52,6 +52,9 @@ def xml_treatment(xml_file_name):
     # list to store one communication
     one_com_dict = {}
     
+    if data_node == None:
+        return xml_dict, com_list
+    
     for item_node in data_node:
         for child_node in item_node:
             one_com_dict[child_node.tag] = child_node.text
@@ -60,36 +63,20 @@ def xml_treatment(xml_file_name):
     return xml_dict, com_list
 
 
-#===============================================================================
-# def occurred_cases2(full_vector):
-#     ''' Return a list with just an occurrence of each service request 
-#     that is made in a comunication list'''
-#     ret_vector = [] # list that returns a once occurred request and its response
-#     services_occurred = [] # list to store services that have already been found
-#     
-#     for item in full_vector:
-#         service = item[0][2] # getting just the service
-#         if not service in services_occurred: # if service was not found yet
-#             services_occurred.append(service) # record this service occurrence
-#             ret_vector.append(item) # store request and response
-#        
-#     return ret_vector  
-#===============================================================================
-
 def cap_files():
     ''' Return a list with all path to cap files from a specific directory'''
     
-    if not os.path.isdir("./cap_files"):
+    if not os.path.isdir("./../cap_files"):
         print("Missing cap_file directory...")
         print("Missing captured files...")
         print("Creating directory cap_files...")
-        os.makedirs("./cap_files")
+        os.makedirs("./../cap_files")
    
-    all_itens_on_directory = os.listdir("./cap_files")
+    all_itens_on_directory = os.listdir("./../cap_files")
     all_cap_path = []
     
     for item in all_itens_on_directory:
-        path_to_check = "./cap_files/" + item
+        path_to_check = "./../cap_files/" + item
         if os.path.isfile(path_to_check):
             all_cap_path.append(item)
     
@@ -100,22 +87,22 @@ def cap_files():
 def xml_files():
     ''' Return a list with all path to xml files from a specific directory'''
    
-    all_cap_path = os.listdir("./cap_files/xml_files")
+    all_cap_path = os.listdir("./../cap_files/xml_files")
     return all_cap_path
 
 
 def move_xml_files():
-    if not os.path.isdir("./cap_files/xml_files"):
+    if not os.path.isdir("./../cap_files/xml_files"):
         print("Missing xml_files directory...")
         print("Missing xml files...")
         print("Creating directory xml_files...")
-        os.makedirs("./cap_files/xml_files")
+        os.makedirs("./../cap_files/xml_files")
             
-    dir_files = os.listdir("./cap_files")
+    dir_files = os.listdir("./../cap_files")
     
     for item in dir_files:
         if item[-3:] == "xml":
-            shutil.move("./cap_files/" + item, "./cap_files/xml_files/" + item)
+            shutil.move("./../cap_files/" + item, "./../cap_files/xml_files/" + item)
             
 def custom_filter_insert():
 
@@ -208,19 +195,19 @@ def cap_to_txt_xml():
     # Putting communication in a file
     
     # Creating output dir
-    if not os.path.isdir("./output"):
+    if not os.path.isdir("./../output"):
         print("Creating directory output...")
-        os.makedirs("./output")
+        os.makedirs("./../output")
 
     txt_file_list = []
     
-    if not os.path.isdir("./cap_files/txt_files"):
+    if not os.path.isdir("./../cap_files/txt_files"):
         print("Creating directory txt_files...")
-        os.makedirs("./cap_files/txt_files")
+        os.makedirs("./../cap_files/txt_files")
         
     # Open a .txt file to each xml file 
     for cap_file in all_cap_files:
-        txt_file_list.append(open("./cap_files/txt_files/" + cap_file[:-4] + 'txt',"w"))
+        txt_file_list.append(open("./../cap_files/txt_files/" + cap_file[:-4] + 'txt',"w"))
     
     # Choose of address communication filter to select specific module from captured files
     communication_filter = choose_filter()

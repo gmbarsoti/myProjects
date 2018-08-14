@@ -6,3 +6,7 @@ Generating a file with all lines from captured files to use with Juninho's appli
 
 Empty captured files (.ctec) are now treated correctly;
 New directories structure to a better application usage;
+
+14-08-18
+
+Added log generator to capture errors and execution steps

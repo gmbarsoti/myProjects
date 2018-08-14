@@ -173,7 +173,7 @@ def cap_to_txt_xml():
     all_cap_files = cap_files()
     
     # Generating all XML files from cap files
-    print("Creating XML files!")
+    print("Creating XML files...")
     for cap_file in all_cap_files:
         generate_xml(cap_file)
      

@@ -17,12 +17,12 @@ def copylines(path_to_source_file, target_file):
 
 def join_files():
     
-    target_file = open("./output/captura.txt", 'w')
+    target_file = open("./../output/captura.txt", 'w')
 
-    all_cap_files = listdir("./cap_files/txt_files")
+    all_cap_files = listdir("./../cap_files/txt_files")
     
     for file_name in all_cap_files:
-        path_to_source_file = "./cap_files/txt_files/" + file_name
+        path_to_source_file = "./../cap_files/txt_files/" + file_name
         if isfile(path_to_source_file):
                     
             copylines(path_to_source_file, target_file)

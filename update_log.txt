@@ -1,3 +1,17 @@
 Added:
 Scanner and module address can be typed in upper and lower case
 Generating a file with all lines from captured files to use with Juninho's application
+
+13-08-18
+
+Empty captured files (.ctec) are now treated correctly;
+New directories structure to a better application usage;
+
+14-08-18
+
+Added log generator to capture errors and execution steps
+
+05-09-18
+
+CSV file is generated with sorted requests. Now it is a sorted list.
+Tracking file with code to generate xml files to add direct communications to tips

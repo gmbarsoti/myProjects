@@ -52,7 +52,7 @@ def append_response(request, services_occurred_list, req_res_obj, request_respon
         pass
     
 def requests_occurred(request_responses_list):
-    '''Return a list with just requests thar already occurred'''
+    '''Return a list with just requests that already occurred'''
     
     occurred_requests_list = []
     

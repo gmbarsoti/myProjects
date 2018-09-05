@@ -1,8 +1,10 @@
 .tmp.drivedownload/
-FramesCAN/
-cap_files/
 __pycache__/
-output/
+build/
+dist/
+FramesCAN/
+xml_TIPS/
 .project
 .pydevproject
-output/
+ProtocolAnalyzerSaveXml.exe
+services_getter.spec

@@ -21,6 +21,12 @@ def generate_xml(cap_file):
 
 
 def xml_treatment(xml_file_name):
+    
+    # list to store communication lines
+    com_list = []
+    # list to store one communication
+    one_com_dict = {}        
+    
     #print("Parsing XML file: ", xml_file_name)
     
     data_folder = Path("./../cap_files/xml_files/")
@@ -39,21 +45,29 @@ def xml_treatment(xml_file_name):
     
     xml_dict = {}
     config_node = root.find('Config')
+    
+    #verify error if xml file does not have this node
+    if config_node == None:
+        return xml_dict, com_list
+   
     for iterator_note in config_node[1].iter():
         if not str(iterator_note.text) == "None":
             xml_dict[iterator_note.tag] = iterator_note.text
+            
+    
+    #verify error if xml file does not have this node
+    total_lines_node = config_node.find("Total")
+    if total_lines_node == None:
+        return xml_dict, com_list
+    
     # Number of lines
-    xml_dict["Total_lines"] = config_node.find("Total").text
+    xml_dict["Total_lines"] = total_lines_node.text
     
     # Get communication lines
     
     data_node = root.find("Data")
-    
-    # list to store communication lines
-    com_list = []
-    # list to store one communication
-    one_com_dict = {}
-    
+
+    #verify error if xml file does not have this node
     if data_node == None:
         return xml_dict, com_list
     
@@ -128,12 +142,12 @@ def choose_filter():
     while not choice in valid_list:
         choice = input("Choose a filter to use:\n\n" +
                        "0 - Insert custom filter\n"+
-                       "1 - body - 745, 765\n" +
-                       "2 - engine - 7E0, 7E8\n" +
-                       "3 - cluster - 743, 763\n" +
-                       "4 - steering - 742, 762\n" +
-                       "5 - ABS - 740, 760\n" +
-                       "6 - airbag - 752, 772\n"+
+                       "1 - Logan body - 745, 765\n" +
+                       "2 - Logan engine - 7E0, 7E8\n" +
+                       "3 - Logan cluster - 743, 763\n" +
+                       "4 - Logan steering - 742, 762\n" +
+                       "5 - Logan ABS - 740, 760\n" +
+                       "6 - Logan airbag - 752, 772\n"+
                        "7 - ABS_volvo_xc60 - 760, 768\n")
         if not choice in valid_list:
             print("\nChoose a valid option!\n")

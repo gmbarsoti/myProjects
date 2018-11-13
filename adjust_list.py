@@ -6,6 +6,7 @@ def line_adjust(line):
     items = line.split(' ')
     
     separator = items[1]
+
     new_list = []
     if len(separator) >1:
         # There is no separator

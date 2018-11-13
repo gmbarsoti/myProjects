@@ -5,12 +5,27 @@ from get_response import get_response
 from os import listdir
 from os.path import isfile
 
-
+def ignoring_initial_responses(full_list, list_index):
+    ''' ignoring initial lines that are not requests'''
+    found_request = False
+    
+    while not list_ended(full_list, list_index) and not found_request:
+        line = full_list[list_index]
+        
+        if not is_a_request(line):
+            #updating list index, going to the next line
+            list_index += 1
+        else:
+            found_request = True
+            
 def req_and_res(full_list):
     """Return a list with all requests and its responses"""
     
     request_responses_list = []
     list_index = 0
+    
+    # ignoring initial lines that are not requests
+    ignoring_initial_responses(full_list, list_index)
     
     while not list_ended(full_list, list_index):
         
@@ -116,7 +131,7 @@ def get_communications(file_to_check, request_responses_list):
         
     else:
         
-        # Get just one occurence of each service in communicaton from dados.txt file
+        # Get just one occurrence of each service in communication from dados.txt file
         occurred_cases(list_req_and_res, request_responses_list)
         
     

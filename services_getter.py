@@ -28,6 +28,10 @@ def main():
             cap_to_txt_xml()
             logging.info("Captured (.ctec) files were converted.")
             
+            logging.info("Generating a file with all communications...")
+            join_files()
+            logging.info("File with all communications is generated!")
+            
             logging.info("Using FramesCAN module...")
             frames_can_exec()
             logging.info("FramesCAN module executed!")
@@ -40,13 +44,10 @@ def main():
             generate_cvs_file(request_responses_list)
             logging.info("CSV file was created!")
             
-            logging.info("Generating a file with all communications...")
-            join_files()
-            logging.info("File with all communications is generated!")
-            
             logging.info("Application concluded without errors!")
             
             input("\nApplication is finished, press enter to close window.")
+            
         except Exception:
             print(traceback.format_exc())
             logging.exception("\n---------Some exception occurred---------------\n")

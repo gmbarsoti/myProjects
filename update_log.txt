@@ -14,4 +14,19 @@ Added log generator to capture errors and execution steps
 05-09-18
 
 CSV file is generated with sorted requests. Now it is a sorted list.
-Tracking file with code to generate xml files to add direct communications to tips
+(experimental) Tracking file with code to generate xml files to add direct communications to tips
+
+10-09-18
+
+Shortcut added with relative path:
+%windir%\system32\cmd.exe /c "cd .\services_getter && start services_getter.exe"
+
+23-10-18
+
+Improved xml file verification. Now nodes are verified if they exists before be accessed.
+
+13-11-18
+
+Multiple responses to a single request are now considered and put at responses set of this request
+It works only if responses came immediately after its request and sequentially, without different frames 
+between the responses   

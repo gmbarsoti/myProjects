@@ -9,6 +9,7 @@ import traceback
 import os
 
 def main():
+    
     print("Application started\n")
     do_log = True
     if do_log:

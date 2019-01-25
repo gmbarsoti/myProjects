@@ -29,4 +29,8 @@ Improved xml file verification. Now nodes are verified if they exists before be 
 
 Multiple responses to a single request are now considered and put at responses set of this request
 It works only if responses came immediately after its request and sequentially, without different frames 
-between the responses   
+between the responses 
+
+25-01-19
+
+Fixing large path error. It used to occur an error if applications folder was in a too large path. Now it is fixed.  

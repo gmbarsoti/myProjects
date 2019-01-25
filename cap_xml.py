@@ -5,6 +5,16 @@ import os
 import shutil
 from request_responses_classes import captured_config
 
+#got from stackoverflow
+def clean_path(path):
+    path = str(path).replace('/',os.sep).replace('\\',os.sep)
+    if os.sep == '\\' and '\\\\?\\' not in path:
+        # fix for Windows 260 char limit
+        relative_levels = len([directory for directory in path.split(os.sep) if directory == '..'])
+        cwd = [directory for directory in os.getcwd().split(os.sep)] if ':' not in path else []
+        path = '\\\\?\\' + os.sep.join(cwd[:len(cwd)-relative_levels]\
+                         + [directory for directory in path.split(os.sep) if directory!=''][relative_levels:])
+    return path
 
 
 def generate_xml(cap_file):
@@ -31,8 +41,8 @@ def xml_treatment(xml_file_name):
     
     data_folder = Path("./../cap_files/xml_files/")
     file_path = data_folder /  xml_file_name
-    
-    tree = ET.parse(file_path)
+    c_path = clean_path(file_path)
+    tree = ET.parse(c_path)
     root = tree.getroot()
     
     #===========================================================================
@@ -116,9 +126,19 @@ def move_xml_files():
             
     dir_files = os.listdir("./../cap_files")
     
+    cwd = os.getcwd()
+    above_dir = os.path.dirname(cwd)
+    
+    data_directory = Path('./cap_files')
+    cap_full_path = above_dir + '\\' + str(data_directory) + '\\'
+     
+    data_directory = Path("./cap_files/xml_files/")
+    xml_full_path = above_dir + '\\' + str(data_directory)+ '\\'
+    
     for item in dir_files:
         if item[-3:] == "xml":
-            shutil.move("./../cap_files/" + item, "./../cap_files/xml_files/" + item)
+            #shutil.move("./../cap_files/" + item, "./../cap_files/xml_files/" + item)
+            shutil.move(cap_full_path + item, xml_full_path + item)
             
 def custom_filter_insert():
 
@@ -138,7 +158,7 @@ def custom_filter_insert():
 def choose_filter():
     """ Choose a specific filter to get a specific communication from cap files """
     choice = ''
-    valid_list = ['0','1','2','3','4','5','6','7']
+    valid_list = ['0','1','2','3','4','5','6','7','8']
     while not choice in valid_list:
         choice = input("Choose a filter to use:\n\n" +
                        "0 - Insert custom filter\n"+
@@ -148,7 +168,8 @@ def choose_filter():
                        "4 - Logan steering - 742, 762\n" +
                        "5 - Logan ABS - 740, 760\n" +
                        "6 - Logan airbag - 752, 772\n"+
-                       "7 - ABS_volvo_xc60 - 760, 768\n")
+                       "7 - ABS_volvo_xc60 - 760, 768\n"+
+                       "8 - test - 7D3, 7DB\n")
         if not choice in valid_list:
             print("\nChoose a valid option!\n")
     
@@ -161,6 +182,7 @@ def choose_filter():
     ABS = ["740","760"] 
     airbag = ["752","772"]
     ABS_volvo_xc60 = ["760","768"]
+    test = ["7D3","7DB"]
     
     communication_filter = []
     
@@ -179,7 +201,9 @@ def choose_filter():
     elif choice == '6':
         communication_filter = airbag
     elif choice == '7':
-        communication_filter = ABS_volvo_xc60 
+        communication_filter = ABS_volvo_xc60
+    elif choice == '8':
+        communication_filter = test 
     
     return communication_filter
 
@@ -221,9 +245,16 @@ def cap_to_txt_xml():
         print("Creating directory txt_files...")
         os.makedirs("./../cap_files/txt_files")
         
-    # Open a .txt file to each xml file 
+    # Open a .txt file to each xml file
+    cwd = os.getcwd()
+    above_dir = os.path.dirname(cwd)
+    
+    data_directory = Path('./cap_files/txt_files/')
+    txt_full_path = above_dir + '\\' + str(data_directory) + '\\'
     for cap_file in all_cap_files:
-        txt_file_list.append(open("./../cap_files/txt_files/" + cap_file[:-4] + 'txt',"w"))
+        
+        #txt_file_list.append(open("./../cap_files/txt_files/" + cap_file[:-4] + 'txt',"w"))
+        txt_file_list.append(open(txt_full_path + cap_file[:-4] + 'txt',"w"))
     
     # Choose of address communication filter to select specific module from captured files
     communication_filter = choose_filter()

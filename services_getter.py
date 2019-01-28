@@ -3,6 +3,7 @@ from frames_can import frames_can_exec
 from request_and_responses import services_occurrences
 from CSV_third import generate_cvs_file
 from join_files import join_files
+from Cleanup import cleanup
 import logging
 import datetime
 import traceback
@@ -24,6 +25,12 @@ def main():
         
         try:
             logging.info("Application started")
+            
+            logging.info("cleaning up...")
+            cleanup()
+            logging.info("cleaned up!")
+            
+            
             
             logging.info("Converting captured (.ctec) files to .txt and .xml...")
             cap_to_txt_xml()

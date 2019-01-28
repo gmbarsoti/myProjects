@@ -33,4 +33,8 @@ between the responses
 
 25-01-19
 
-Fixing large path error. It used to occur an error if applications folder was in a too large path. Now it is fixed.  
+Fixing large path error. It used to occur an error if applications folder was in a too large path. Now it is fixed.
+
+28-01-19
+
+Inserting a clean up module to remove files from last execution (.xml and .txt files)

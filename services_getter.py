@@ -4,6 +4,7 @@ from request_and_responses import services_occurrences
 from CSV_third import generate_cvs_file
 from join_files import join_files
 from Cleanup import cleanup
+from creating_directories import creating_dirs
 import logging
 import datetime
 import traceback
@@ -25,6 +26,10 @@ def main():
         
         try:
             logging.info("Application started")
+            
+            logging.info("Creating directories...")
+            creating_dirs()
+            logging.info("Directories created!")
             
             logging.info("cleaning up...")
             cleanup()

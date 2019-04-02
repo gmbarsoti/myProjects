@@ -38,3 +38,8 @@ Fixing large path error. It used to occur an error if applications folder was in
 28-01-19
 
 Inserting a clean up module to remove files from last execution (.xml and .txt files)
+
+02-04-19
+
+Fixing a bug that happens when data length is placed together to the address - addr.data_len - Ex:652.1223.
+In this bug the lines from FramesCAN are in bad format. Now it was treated

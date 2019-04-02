@@ -1,7 +1,7 @@
 import os
 
 def cleanup():
-#removing xml and txt files from the last execution 
+    #removing xml and txt files from the last execution 
     origin_dir = os.getcwd()
     above_dir = os.path.dirname(origin_dir)
     check_path = above_dir + "\\cap_files"

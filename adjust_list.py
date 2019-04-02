@@ -5,6 +5,20 @@ def line_adjust(line):
     # Getting symbol of empty that is in the lines
     items = line.split(' ')
     
+    if(len(items[0]) > len("xxx.")):
+        # Address and number of data are together (Ex: 652.1223.)
+    
+        # removing \n from the last list item
+        items[1] =  items[1][:-1]
+        items.append(items[1])
+        # putting data_length at position 1
+        data_length = items[0].split('.')[1]+'.'
+        items[1] = data_length
+        # Putting only address at position 0
+        items[0] = items[0].split('.')[0]+'.'
+        return items
+    
+    
     separator = items[1]
 
     new_list = []

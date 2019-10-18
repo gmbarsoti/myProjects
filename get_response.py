@@ -17,14 +17,16 @@ def get_multiple_responses(full_list, list_index, response_interface_obj):
             
             line = full_list[list_index]
             # getting last response recorded
-            last_response = response_interface_obj.responses[-1]
+            last_response = response_interface_obj.responses[-1][:-1].split('.')
             # getting first byte of last response 
-            previous_first_byte = last_response[0:2]
+            #previous_first_byte = last_response[0:2]
+            previous_first_byte = last_response[0]
             # getting current response/request
             res_or_req = line[2]
             # getting first byte of current response/request
             first_byte = res_or_req[0:2]
             
+                
             if is_a_response(line) and (first_byte == previous_first_byte):
                 # the next response is also response to the last request
                 response_interface_obj.responses.append(res_or_req)
@@ -86,13 +88,12 @@ def get_response(full_list, list_index):
             line = full_list[list_index]
             res_or_req = line[2]
 
-            if res_or_req == '3E.01.' or res_or_req[0:2] == '7F': 
+            if res_or_req[0:2] == '3E' or res_or_req[0:2] == '7F': 
                 # ignoring tester present
                 list_index += 1 # go to next line
                 pass
         
-            elif not res_or_req[0:2] == '7F':
-                
+            else:
                 #print('Pending response found')
                 response_interface_obj.responses.append(res_or_req)
                 
@@ -104,7 +105,7 @@ def get_response(full_list, list_index):
                 get_multiple_responses(full_list, list_index, response_interface_obj)
             
             
-            elif is_a_request(line):
+            if is_a_request(line):
                 #print('Pending response not found')
                 resp_pending = False
                 # request without response

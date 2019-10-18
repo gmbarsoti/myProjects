@@ -43,3 +43,17 @@ Inserting a clean up module to remove files from last execution (.xml and .txt f
 
 Fixing a bug that happens when data length is placed together to the address - addr.data_len - Ex:652.1223.
 In this bug the lines from FramesCAN are in bad format. Now it was treated
+
+26-04-19
+
+Re fixed the unique bug from 02-04-19. It had error with extended addresses.
+
+18-10-19
+
+New framesCAN buit in python to threat CAN extended
+Possibility to skip framesCAN execution
+
+18-10-19
+
+Fixing lost of responses when a request receives a negative response with parameter 78
+meaning that response will came later

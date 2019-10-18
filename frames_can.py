@@ -9,8 +9,9 @@ from os.path import isfile, isdir
 from os import remove, chdir, getcwd, listdir, makedirs, path
 from subprocess import  run, PIPE
 import shutil
+from Frames_Can_extended_addr import framesCAN_extended_address
 
-def frames_can(file_name):
+def frames_can(file_name, CAN_address_type):
     ''' 1 - Receives name of a .txt captured file; 
         2 - Executes FramesCAN.exe at this file
         3 - Generates data.txt file with organized requests and responses'''
@@ -52,7 +53,10 @@ def frames_can(file_name):
     chdir(framesCAN_dir)
     
     # Executing FramesCan.exe
-    run("FramesCAN.exe", shell=True, stdout=PIPE)
+    if(CAN_address_type == 'Normal'):
+        run("FramesCAN.exe", shell=True, stdout=PIPE)
+    if(CAN_address_type == 'Extended'):
+        framesCAN_extended_address()
     
     #FramesCAN_return = run("FramesCAN.exe", shell=True, stdout=PIPE)
     #print("FramesCAN ran!")
@@ -65,7 +69,7 @@ def frames_can(file_name):
     
     
 
-def frames_can_exec():
+def frames_can_exec(CAN_address_type):
     #cleaning up
     
     FramesCAN_processed_dir = getcwd() + "\\FramesCAN\\FramesCAN_processed"
@@ -102,7 +106,7 @@ def frames_can_exec():
         #path_to_check = "./../cap_files/txt_files/" + item_name
         path_to_check = check_path + item_name
         if isfile(str(path_to_check)):
-            frames_can(item_name)
+            frames_can(item_name, CAN_address_type)
             
             data_directory = Path(FramesCAN)
             

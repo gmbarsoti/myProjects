@@ -10,6 +10,48 @@ import datetime
 import traceback
 import os
 
+
+
+def option_framesCAN():
+    """ Choose if framesCAN will be skipped or not """
+    choice = ''
+    valid_list = ['0','1']
+    while not choice in valid_list:
+        choice = input("Skip framesCAN?\n\n" +
+                       "0 - NO\n"+
+                       "1 - YES\n")
+        if not choice in valid_list:
+            print("\nChoose a valid option!\n")
+    
+    if choice == '0':
+        choice = 0
+    else:
+        choice = 1
+        
+    return choice
+
+
+def option_CAN_normal_extended():
+    """ Choose between CAN normal or extended addressing """
+    choice = ''
+    valid_list = ['0','1']
+    while not choice in valid_list:
+        choice = input("CAN address type?\n\n" +
+                       "0 - Normal\n"+
+                       "1 - Extended\n")
+        if not choice in valid_list:
+            print("\nChoose a valid option!\n")
+    
+    if choice == '0':
+        choice = 'Normal'
+    else:
+        choice = 'Extended'
+        
+    return choice
+
+
+
+
 def main():
     
     print("Application started\n")
@@ -35,19 +77,22 @@ def main():
             cleanup()
             logging.info("cleaned up!")
             
+            skip_framesCAN =  option_framesCAN()
+            CAN_address_type = option_CAN_normal_extended()
             
+            if not (skip_framesCAN):
             
-            logging.info("Converting captured (.ctec) files to .txt and .xml...")
-            cap_to_txt_xml()
-            logging.info("Captured (.ctec) files were converted.")
-            
-            logging.info("Generating a file with all communications...")
-            join_files()
-            logging.info("File with all communications is generated!")
-            
-            logging.info("Using FramesCAN module...")
-            frames_can_exec()
-            logging.info("FramesCAN module executed!")
+                logging.info("Converting captured (.ctec) files to .txt and .xml...")
+                cap_to_txt_xml()
+                logging.info("Captured (.ctec) files were converted.")
+                
+                logging.info("Generating a file with all communications...")
+                join_files()
+                logging.info("File with all communications is generated!")
+                
+                logging.info("Using FramesCAN module...")
+                frames_can_exec(CAN_address_type)
+                logging.info("FramesCAN module executed!")
             
             logging.info("Creating list of requests and its responses...")
             request_responses_list = services_occurrences()

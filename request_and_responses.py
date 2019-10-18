@@ -49,6 +49,8 @@ def req_and_res(full_list):
             request_responses_list.append(request_response_object)
   
         else:
+            #is a response
+            #responses_list.append(data)
             list_index += 1
             # ignoring initial lines that are not requests
             pass        
@@ -59,12 +61,13 @@ def append_response(request, services_occurred_list, req_res_obj, request_respon
     
     elem_pos = services_occurred_list.index(request) # getting position
     
-    response = req_res_obj.responses[0] # Just position 0 (Zero) because at this point there is just one response to requests in this list
-    
-    if not response in request_responses_list[elem_pos].responses:
-        request_responses_list[elem_pos].responses.append(response)
-    else:
-        pass
+    for response in req_res_obj.responses:
+        
+    #response = req_res_obj.responses[0] # Just position 0 (Zero) because at this point there is just one response to requests in this list  
+        if not response in request_responses_list[elem_pos].responses:
+            request_responses_list[elem_pos].responses.append(response)
+        else:
+            pass
     
 def requests_occurred(request_responses_list):
     '''Return a list with just requests that already occurred'''
@@ -103,7 +106,7 @@ def get_communications(file_to_check, request_responses_list):
     # Path to data.txt directory
     path_to_directory_framesCAN = "./FramesCAN/FramesCAN_processed"
     data_txt_file = file_to_check
-
+    print('\nFile: ' + file_to_check + '\n')
     
     # Getting all lines from file dados.txt
     lines = fileLines(path_to_directory_framesCAN, data_txt_file)

@@ -1,3 +1,7 @@
 [submodule "jenkins_test"]
 	path = jenkins_test
 	url = https://github.com/gmbarsoti/jenkins_test
+	
+[submodule "mysub"]
+	path = mysub
+	url = https://github.com/gmbarsoti/jenkins_test
